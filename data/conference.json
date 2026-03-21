@@ -1,0 +1,73 @@
+{
+  "importantDates": [
+    {
+      "event": "Call for Papers Opens",
+      "date": "May 1, 2026"
+    },
+    {
+      "event": "Paper Submission Deadline",
+      "date": "September 15, 2026"
+    },
+    {
+      "event": "Notification of Acceptance",
+      "date": "November 1, 2026"
+    },
+    {
+      "event": "Camera-Ready Deadline",
+      "date": "November 20, 2026"
+    },
+    {
+      "event": "Conference Dates",
+      "date": "January 5 - 9, 2027"
+    }
+  ],
+  "committee": [
+    {
+      "name": "Dr. Uday Desai",
+      "role": "General Co-Chair",
+      "affiliation": "IIT Hyderabad"
+    },
+    {
+      "name": "Dr. Giridhar Mandyam",
+      "role": "General Co-Chair",
+      "affiliation": "Qualcomm"
+    },
+    {
+      "name": "Dr. Archan Misra",
+      "role": "General Co-Chair",
+      "affiliation": "SMU"
+    },
+    {
+      "name": "Dr. Ranjita Bhagwan",
+      "role": "TPC Co-Chair",
+      "affiliation": "Microsoft Research"
+    },
+    {
+      "name": "Dr. Ashwin Ashok",
+      "role": "TPC Co-Chair",
+      "affiliation": "Old Dominion University"
+    }
+  ],
+  "sponsors": [
+    {
+      "name": "Cisco",
+      "tier": "Platinum"
+    },
+    {
+      "name": "Qualcomm",
+      "tier": "Platinum"
+    },
+    {
+      "name": "Google",
+      "tier": "Gold"
+    },
+    {
+      "name": "Microsoft",
+      "tier": "Gold"
+    },
+    {
+      "name": "TCS",
+      "tier": "Silver"
+    }
+  ]
+}
