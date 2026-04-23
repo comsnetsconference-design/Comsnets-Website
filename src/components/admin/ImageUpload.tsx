@@ -95,7 +95,7 @@ export default function ImageUpload({ currentImageUrl, onUploadComplete, folderP
           {error && <div style={{ color: '#dc3545', fontSize: '11px', marginTop: '5px' }}>{error}</div>}
         </div>
       </div>
-      <p style={{ fontSize: '10px', color: '#666', marginTop: '5px', marginRotate: 0 }}>
+      <p style={{ fontSize: '10px', color: '#666', marginTop: '5px' }}>
         * Max size 2MB. Recommmended format: Square PNG/JPG.
       </p>
     </div>

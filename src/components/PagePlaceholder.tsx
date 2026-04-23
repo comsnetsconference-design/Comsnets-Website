@@ -6,20 +6,25 @@ import '../app/keynote_speakers/speaker-styles.css';
 
 interface PagePlaceholderProps {
   title: string;
-  icon: string;
+  icon?: string;
   message?: string;
-  archiveLink: string;
+  description?: string;
+  archiveLink?: string;
+  prevYearLink?: string;
   archiveLabel?: string;
 }
 
 export default function PagePlaceholder({ 
   title, 
-  icon, 
+  icon = "fa-info-circle", 
   message, 
+  description,
   archiveLink, 
+  prevYearLink,
   archiveLabel = "COMSNETS 2026" 
 }: PagePlaceholderProps) {
-  const defaultMessage = `Our ${title.toLowerCase()} for COMSNETS 2027 will be announced soon. Stay tuned for updates.`;
+  const finalMessage = message || description || `Our ${title.toLowerCase()} for COMSNETS 2027 will be announced soon. Stay tuned for updates.`;
+  const finalArchiveLink = archiveLink || prevYearLink || "/archive";
 
   return (
     <>
@@ -40,14 +45,14 @@ export default function PagePlaceholder({
                 </div>
                 <h2 className="tba-title">{title}</h2>
                 <p className="tba-message">
-                  {message || defaultMessage}
+                  {finalMessage}
                 </p>
               </div>
 
               <div className="prev-speakers-box">
                 <h3>Previous {title}</h3>
                 <p>
-                  View details from <a href={archiveLink} style={{ color: '#3b82f6', fontWeight: 600 }}>{archiveLabel}</a> and previous years in the <Link href="/archive" style={{ color: '#3b82f6', fontWeight: 600 }}>archive</Link>.
+                  View details from <a href={finalArchiveLink} style={{ color: '#3b82f6', fontWeight: 600 }}>{archiveLabel}</a> and previous years in the <Link href="/archive" style={{ color: '#3b82f6', fontWeight: 600 }}>archive</Link>.
                 </p>
               </div>
             </div>
