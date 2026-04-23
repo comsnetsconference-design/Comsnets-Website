@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Firebase Service Account
+serviceAccountKey.json
+comsnets-website-firebase-adminsdk-service-account-key.json
+
+# Scratch files
+scratch/
+scripts/
