@@ -47,3 +47,4 @@ comsnets-website-firebase-adminsdk-service-account-key.json
 # Scratch files
 scratch/
 scripts/
+.secrets/
