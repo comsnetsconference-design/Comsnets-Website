@@ -14,8 +14,8 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: '/assets/:path*',
-        destination: 'https://www.comsnets.org/assets/:path*',
+        source: '/assets/images/:path*',
+        destination: 'https://www.comsnets.org/assets/images/:path*',
         permanent: false,
       }
     ];
