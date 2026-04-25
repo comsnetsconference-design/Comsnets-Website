@@ -29,9 +29,9 @@ export default function Memories() {
                 <span className="mem-dot d3"></span>
             </div>
             <p style={{ marginTop: '16px' }}>
-                <Link href="/photos" className="btn-hp btn-soft" style={{ fontSize: '13px' }}>
+                <a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer" className="btn-hp btn-soft" style={{ fontSize: '13px' }}>
                     <i className="fa fa-images"></i> View All Photos
-                </Link>
+                </a>
             </p>
         </section>
     );
