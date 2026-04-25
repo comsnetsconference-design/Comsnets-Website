@@ -25,3 +25,11 @@ jobs:
           projectId: comsnets-website
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
+      - name: Deploy Firestore Rules
+        env:
+          SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMSNETS_WEBSITE }}
+        run: |
+          echo "$SERVICE_ACCOUNT_JSON" > "$RUNNER_TEMP/sa.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json"
+          npx -y firebase-tools deploy --only firestore:rules --project comsnets-website
+          rm -f "$RUNNER_TEMP/sa.json"
