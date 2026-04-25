@@ -62,7 +62,7 @@ export default function OrganizingCommittee() {
                 {/* Previous Committees */}
                 <div className="oc-prev">
                     <h3>Previous Committees</h3>
-                    <p>View the organizing committee from <Link href="/archive/2026/organizing_committee.php">COMSNETS 2026</Link> and previous years.</p>
+                    <p>View the organizing committee from <a href="https://www.comsnets.org/archive/2026/organizing_committee.php" target="_blank" rel="noopener noreferrer">COMSNETS 2026</a> and previous years.</p>
                 </div>
 
               </div>
