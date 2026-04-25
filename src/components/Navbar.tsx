@@ -235,14 +235,14 @@ export default function Navbar() {
                                         </ul>
                                     </li>
 
-                                    <li className={pathname === '/photos' ? 'active' : ''}>
-                                        <Link href="/photos">Photos</Link>
+                                    <li>
+                                        <a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer">Photos</a>
                                     </li>
 
                                     <li className={`dropdown ${openDropdown === 'archive' ? 'open' : ''}`}>
                                         <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown('archive', e)}>Archive<span className="caret"></span></a>
                                         <ul className="dropdown-menu" role="menu" style={{ minWidth: '150px', maxHeight: '300px', overflowY: 'auto' }}>
-                                            <li><Link href="/archive/2026/">2026</Link></li>
+                                            <li><a href="https://www.comsnets.org/archive/2026/" target="_blank" rel="noopener noreferrer">2026</a></li>
                                             {Array.from({length: 2021 - 2009 + 1}, (_, i) => 2021 - i).map(year => (
                                                 <li key={year}><a href={`https://www.comsnets.org/archive/${year}`} target="_blank" rel="noopener noreferrer">{year}</a></li>
                                             ))}
