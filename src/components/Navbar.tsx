@@ -209,6 +209,7 @@ export default function Navbar() {
                                         <ul className="dropdown-menu" role="menu">
                                             <li className={isActive('/call_for_papers')}><Link href="/call_for_papers#head">Call for Papers</Link></li>
                                             <li className={isActive('/call_for_participation')}><Link href="/call_for_participation#head">Call for Participation</Link></li>
+                                            <li className={isActive('/demos_exhibits')}><Link href="/demos_exhibits#head">Call for Demos &amp; Exhibits</Link></li>
                                             <li className={isActive('/call_for_workshop_proposal')}><Link href="/call_for_workshop_proposal#head">Workshop Proposals</Link></li>
                                         </ul>
                                     </li>
