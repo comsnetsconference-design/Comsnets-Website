@@ -293,7 +293,7 @@ export default function GraduateForumPage() {
                       <p>University of Bamberg<br/>Germany</p>
                     </div>
                     <div className="cfp-chair-card">
-                      <div className="chair-photo"><i className="fa fa-user-circle"></i></div>
+                      <div className="chair-photo"><img src="/assets/images/Committee_2027/Tanya.jpg" alt="Tanya Shreedhar" /></div>
                       <h4>Tanya Shreedhar</h4>
                       <p>TU Delft<br/>Netherlands</p>
                     </div>
