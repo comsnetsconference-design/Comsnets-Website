@@ -219,7 +219,7 @@ export default function MindsWorkshopPage() {
                     </div>
                   </div>
                   <div className="col-sm-4 col-md-4">
-                    <img src="https://shashikantilager.com/assets/img/prof_pic_2024.JPG" className="thumbnail" alt="Shashikant Ilager" style={{ height: '200px', width: '170px' }} />
+                    <img src="/assets/images/Committee_2027/Shashikant.jpg" className="thumbnail" alt="Shashikant Ilager" style={{ height: '200px', width: '170px' }} />
                     <div className="caption">
                       <h4><a href="https://shashikantilager.com/" target="_blank" rel="noopener noreferrer">Shashikant Ilager</a></h4>
                       <p>University of Amsterdam<br />Netherlands</p>
