@@ -51,7 +51,8 @@ const gradStyles = `
 .cfp-chairs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 18px; }
 .cfp-chair-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; text-align: center; transition: all 0.25s; }
 .cfp-chair-card:hover { border-color: #0ea5e9; background: #f0f9ff; }
-.cfp-chair-card .chair-photo { width: 96px; height: 96px; margin: 0 auto 14px; border-radius: 50%; background: linear-gradient(135deg, #e0f2fe, #bae6fd); display: flex; align-items: center; justify-content: center; color: #0284c7; font-size: 44px; }
+.cfp-chair-card .chair-photo { width: 96px; height: 96px; margin: 0 auto 14px; border-radius: 50%; background: linear-gradient(135deg, #e0f2fe, #bae6fd); display: flex; align-items: center; justify-content: center; color: #0284c7; font-size: 44px; overflow: hidden; }
+.cfp-chair-card .chair-photo img { width: 100%; height: 100%; object-fit: cover; }
 .cfp-chair-card h4 { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 4px; }
 .cfp-chair-card p { font-size: 13.5px; color: #64748b; margin: 0; line-height: 1.5; }
 
@@ -287,7 +288,7 @@ export default function GraduateForumPage() {
                   </p>
                   <div className="cfp-chairs-grid">
                     <div className="cfp-chair-card">
-                      <div className="chair-photo"><i className="fa fa-user-circle"></i></div>
+                      <div className="chair-photo"><img src="/assets/images/Committee_2027/Debasree.jpg" alt="Debasree Das" /></div>
                       <h4>Debasree Das</h4>
                       <p>University of Bamberg<br/>Germany</p>
                     </div>
