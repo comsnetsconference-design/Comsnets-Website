@@ -119,7 +119,7 @@ Format: `v{major}.{minor}.{patch}` in commit messages.
 - Last digit non-0 = test commit, no tag.
 - Increment by 1 from latest commit message.
 - Production version skips over test slots (e.g. after v0.1.16 prod, test commits went to v0.1.17-ish territory, next prod jumped to v0.1.20).
-- Latest: `v0.1.22` (commit `d3a5482`).
+- Latest: `v0.1.24` (data + docs sync on 2026-05-12).
 
 ---
 
@@ -168,3 +168,50 @@ Format: `v{major}.{minor}.{patch}` in commit messages.
 - CRITICAL discovery: `/organizing_committee` is Firestore-driven, not hardcoded. Updated Shashikant's image in Firestore doc `minds_workshop_co_chairs` (collection `organizing_committee`) using Firebase Admin SDK script. See "Updating Firestore Programmatically" section above for the pattern.
 - Image redirect quirk: `next.config.ts` `/assets/images/*` redirect means committed photos in `public/` are also available at the comsnets.org URL. Firestore member `image` fields can use either path.
 - Deployed via PR #11 (migration-v1 -> main) + PR #12 (main -> production). GitHub Actions run `25413469000` succeeded.
+
+### v0.1.23 (2026-05-05) -- docs
+
+- Added `setup/kt.md` (this file) and `setup/structure.md` for the Next.js project. Commit `5cb8a33` on `migration-v1`.
+- Captured credential locations (Firebase Admin SDK key, FTP TLS quirk, Admin SDK update pattern) so future sessions stop hunting.
+- Not promoted to `main`/`production` — docs commit, no runtime change.
+
+### v0.1.24 (2026-05-12) -- audit + Firestore OC sync + style normalization + Shashikant fix
+
+**No `.tsx`/`.ts`/`.json` code changes. Pure data + docs. Audit-driven sync after Web Co-Chair team edited PHP directly on 2026-05-11.**
+
+Audit findings (every change on `comsnets.org` since 2026-05-05):
+- One real PHP file edited remotely: `organizing_committee.php` on 2026-05-11 07:04 UTC, +2840 bytes. 9 substantive edits.
+- New misspelled FTP dir `Commitee 2027/` (one 'm') with 3 webp portraits uploaded 2026-04-24.
+- 8 OC-page changes were missing from Firestore -> Firebase webapp was stale.
+- One regression: Shashikant image reverted to dead external URL `https://shashikantilager.com/.../prof_pic_2024.JPG` (HTTP 404 -- removed from his GitHub Pages).
+
+Firestore writes (all via `firebase-admin` script, READ + UPDATE only):
+- CREATE `i_art_co_chair` (order 3.5, member: Anurag Kumar @ IISc).
+- UPDATE `standards_driven_research_sdr_workshop_co_chair`: title plural, members 1->3 (+Ashutosh Dutta @ Johns Hopkins APL, +Dilip Krishnaswamy @ C-DOT).
+- UPDATE `graduate_forum_chair`: title plural, members 1->2 (+Tanya Shreedhar @ TU Delft).
+- UPDATE `web_co_chairs`: members 3->4 (+Ojaswa Varshney @ IIIT Surat).
+- UPDATE `app_co_chairs`: removed Snehalraj duplicate (4->3).
+- UPDATE `publicity_co_chairs`: Pranay Agarwal image + affiliation refresh.
+- UPDATE `social_media_co_chairs`: members 2->3 (+Sugandh Pargal @ IIT Kharagpur).
+- UPDATE `minds_workshop_co_chairs`: Shashikant image -> `/assets/images/Committee_2027/Shashikant.jpg` (was dead external URL).
+- Every modified doc now has `updatedAt: serverTimestamp()` so future audits are not blind.
+
+Style normalization (read `src/components/OCMemberCard.tsx`: affiliation uses `dangerouslySetInnerHTML`, image is raw `<img src>`):
+- 23 affiliations rewritten `\n` -> `<br/>` (16 docs touched). `\n` was collapsing to a single space in HTML so affiliations rendered on one line instead of two.
+- 15 image paths rewritten `assets/...` -> `/assets/...`. Relative paths from URL `/organizing_committee` resolved to `/organizing_committee/assets/...` which 404'd silently on the webapp. Leading-slash paths are caught by the `next.config.ts` `/assets/images/*` redirect.
+
+PHP fix (FTP write):
+- Uploaded 3 webps to `assets/images/Committee_2027/` with corrected names: `Ashutosh-Dutta-Portrait-300x300.webp`, `DilipKrishnaswamy.webp`, `PranayAgarwal.webp` (renamed from `Pranayagawal.webp`).
+- Edited `organizing_committee.php` (FTP): 3 references `Commitee 2027/` -> `Committee_2027/`, Pranay filename fixed, Tanya placeholder -> our `Committee_2027/Tanya.jpg`, Shashikant external URL -> `assets/images/Committee_2027/Shashikant.jpg`.
+- Misspelled `Commitee 2027/` FTP dir left intact (clutter, 57 KB). Safe to delete later.
+
+Verified via Claude in Chrome:
+- 56/56 images load on `https://comsnets-website.web.app/organizing_committee` (was loading lazily; forced `loading=eager` to verify).
+- All 7 new/edited members render with proper photos + 2-line affiliations.
+- PHP page: Anurag, Ashutosh, Dilip, Tanya, Shashikant all return naturalWidth>0 with correct sources.
+
+Pre-edit dumps + PHP backup saved at `/tmp/comsnets_audit/pre_fix_oc_2026-05-12T*.json` and `/tmp/comsnets_audit/php_pre_shashikant_fix_backup.php`.
+
+Open follow-ups (NOT this commit):
+- Coordinate with whoever edits PHP via FTP (likely Ojaswa Varshney or another Web Co-Chair) so future changes go through git + admin panel `/admin/oc/`, not bare FTP. Otherwise drift will keep reopening.
+- `main` and `production` branches still behind `migration-v1` by 15 and 17 commits respectively -- separate promotion PRs needed if the staging/prod gap matters.

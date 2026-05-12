@@ -224,6 +224,8 @@ Each folder is a route. All contain `page.tsx` unless noted.
 
 | Version | Date | Change |
 |---------|------|--------|
+| v0.1.24 | 2026-05-12 | Firestore OC sync (8 doc writes), style normalization (23 affil + 15 path fixes), Shashikant 404 fix on PHP+webapp |
+| v0.1.23 | 2026-05-05 | Docs: added `setup/kt.md` + `setup/structure.md` |
 | v0.1.22 | 2026-05-05 | Tanya + Shashikant photos, Firestore OC update via Admin SDK |
 | v0.1.21 | 2026-05-05 | Debasree Das photo, CSS overflow fix for circular avatars |
 | v0.1.20 | 2026-05-05 | Graduate Forum CFP page (`src/app/graduate_forum/page.tsx`) |
