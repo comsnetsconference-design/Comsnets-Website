@@ -1,12 +1,40 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { getNavbarConfig, MenuItem, DEFAULT_NAVBAR } from '../lib/navbarService';
 
 export default function Navbar() {
     const pathname = usePathname();
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [navItems, setNavItems] = useState<MenuItem[]>(DEFAULT_NAVBAR);
+
+    useEffect(() => {
+        const loadNavbar = async () => {
+            // Try cache first
+            const cached = sessionStorage.getItem('navbar_config');
+            if (cached) {
+                try {
+                    setNavItems(JSON.parse(cached));
+                    return;
+                } catch (e) {
+                    console.error("Failed to parse cached navbar", e);
+                }
+            }
+
+            // Fetch from Firestore
+            const config = await getNavbarConfig();
+            if (config && config.length > 0) {
+                setNavItems(config);
+                sessionStorage.setItem('navbar_config', JSON.stringify(config));
+            } else {
+                setNavItems(DEFAULT_NAVBAR);
+            }
+        };
+
+        loadNavbar();
+    }, []);
 
     const toggleDropdown = (name: string, e: React.MouseEvent) => {
         e.preventDefault();
@@ -14,6 +42,40 @@ export default function Navbar() {
     };
 
     const isActive = (path: string) => pathname === path ? 'active' : '';
+
+    const renderMenuItem = (item: MenuItem) => {
+        if (item.isSectionHeader) {
+            return <li key={item.id} className="dropdown-header">{item.label}</li>;
+        }
+
+        if (item.children && item.children.length > 0) {
+            return (
+                <li key={item.id} className={`dropdown ${openDropdown === item.id ? 'open' : ''}`}>
+                    <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown(item.id, e)}>
+                        {item.label}<span className="caret"></span>
+                    </a>
+                    <ul className="dropdown-menu" role="menu" style={item.id === 'archive' ? { minWidth: '150px', maxHeight: '300px', overflowY: 'auto' } : {}}>
+                        {item.children.map(child => renderMenuItem(child))}
+                    </ul>
+                </li>
+            );
+        }
+
+        const isHash = item.path === '#';
+        if (isHash) {
+            return <li key={item.id} className={isActive(item.path)}><a>{item.label}</a></li>;
+        }
+
+        return (
+            <li key={item.id} className={pathname === item.path ? 'active' : ''}>
+                {item.isExternal ? (
+                    <a href={item.path} target="_blank" rel="noopener noreferrer">{item.label}</a>
+                ) : (
+                    <Link href={item.path}>{item.label}</Link>
+                )}
+            </li>
+        );
+    };
 
     return (
         <>
@@ -174,81 +236,7 @@ export default function Navbar() {
 
                             <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'in' : ''}`} id="bs-example-navbar-collapse-2">
                                 <ul className="nav navbar-nav">
-                                    <li className={pathname === '/' ? 'active' : ''}>
-                                        <Link href="/">Home</Link>
-                                    </li>
-
-                                    <li className={`dropdown ${openDropdown === 'about' ? 'open' : ''}`}>
-                                        <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown('about', e)}>About<span className="caret"></span></a>
-                                        <ul className="dropdown-menu" role="menu">
-                                            <li className={isActive('/organizing_committee')}><Link href="/organizing_committee#head">Organizing Committee</Link></li>
-                                            <li className={isActive('/technical_program_committee')}><Link href="/technical_program_committee#head">Program Committee</Link></li>
-                                            <li role="separator" className="divider"></li>
-                                            <li><a href="http://www.comsnets-association.org/" target="_blank" rel="noopener noreferrer">COMSNETS Association</a></li>
-                                            <li className={isActive('/contact')}><Link href="/contact#head">Contact Us</Link></li>
-                                        </ul>
-                                    </li>
-
-                                    <li className={`dropdown ${openDropdown === 'conference' ? 'open' : ''}`}>
-                                        <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown('conference', e)}>Conference<span className="caret"></span></a>
-                                        <ul className="dropdown-menu" role="menu">
-                                            <li className="dropdown-header">Speakers</li>
-                                            <li className={isActive('/keynote_speakers')}><Link href="/keynote_speakers#head">Keynote Speakers</Link></li>
-                                            <li className={isActive('/invited_speakers')}><Link href="/invited_speakers#head">Invited Speakers</Link></li>
-                                            <li role="separator" className="divider"></li>
-                                            <li className="dropdown-header">Tracks</li>
-                                            <li className={isActive('/panel_discussions')}><Link href="/panel_discussions#head">Panel Discussions</Link></li>
-                                            <li className={isActive('/demos_exhibits')}><Link href="/demos_exhibits#head">Demos &amp; Exhibits</Link></li>
-                                            <li className={isActive('/poster_session')}><Link href="/poster_session#head">Poster Session</Link></li>
-                                            <li className={isActive('/graduate_forum')}><Link href="/graduate_forum#head">Graduate Forum</Link></li>
-                                        </ul>
-                                    </li>
-
-                                    <li className={`dropdown ${openDropdown === 'calls' ? 'open' : ''}`}>
-                                        <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown('calls', e)}>Calls<span className="caret"></span></a>
-                                        <ul className="dropdown-menu" role="menu">
-                                            <li className={isActive('/call_for_papers')}><Link href="/call_for_papers#head">Call for Papers</Link></li>
-                                            <li className={isActive('/call_for_participation')}><Link href="/call_for_participation#head">Call for Participation</Link></li>
-                                            <li className={isActive('/demos_exhibits')}><Link href="/demos_exhibits#head">Call for Demos &amp; Exhibits</Link></li>
-                                            <li className={isActive('/call_for_workshop_proposal')}><Link href="/call_for_workshop_proposal#head">Workshop Proposals</Link></li>
-                                        </ul>
-                                    </li>
-
-                                    <li className={`dropdown ${openDropdown === 'sponsors' ? 'open' : ''}`}>
-                                        <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown('sponsors', e)}>Sponsors<span className="caret"></span></a>
-                                        <ul className="dropdown-menu" role="menu">
-                                            <li className={isActive('/sponsorship_opportunities')}><Link href="/sponsorship_opportunities#head">Become a Sponsor</Link></li>
-                                            <li className={isActive('/sponsored_events')}><Link href="/sponsored_events#head">Events we Support</Link></li>
-                                            <li className={isActive('/trees_14')}><Link href="/trees_14#head">14 Trees Foundation</Link></li>
-                                        </ul>
-                                    </li>
-
-                                    <li className={`dropdown ${openDropdown === 'attending' ? 'open' : ''}`}>
-                                        <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown('attending', e)}>Attending<span className="caret"></span></a>
-                                        <ul className="dropdown-menu" role="menu">
-                                            <li className={isActive('/registration')}><Link href="/registration#head"><strong>Registration</strong></Link></li>
-                                            <li className={isActive('/schedule')}><Link href="/schedule#head">Schedule</Link></li>
-                                            <li role="separator" className="divider"></li>
-                                            <li className={isActive('/conference_venue')}><Link href="/conference_venue#head">Conference Venue</Link></li>
-                                            <li className={isActive('/accommodation')}><Link href="/accommodation#head">Accommodation</Link></li>
-                                            <li className={isActive('/visa')}><Link href="/visa#head">Visa Request</Link></li>
-                                            <li className={isActive('/travel_grants')}><Link href="/travel_grants#head">Travel Grants</Link></li>
-                                        </ul>
-                                    </li>
-
-                                    <li>
-                                        <a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer">Photos</a>
-                                    </li>
-
-                                    <li className={`dropdown ${openDropdown === 'archive' ? 'open' : ''}`}>
-                                        <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown('archive', e)}>Archive<span className="caret"></span></a>
-                                        <ul className="dropdown-menu" role="menu" style={{ minWidth: '150px', maxHeight: '300px', overflowY: 'auto' }}>
-                                            <li><a href="https://www.comsnets.org/archive/2026/" target="_blank" rel="noopener noreferrer">2026</a></li>
-                                            {Array.from({length: 2021 - 2009 + 1}, (_, i) => 2021 - i).map(year => (
-                                                <li key={year}><a href={`https://www.comsnets.org/archive/${year}`} target="_blank" rel="noopener noreferrer">{year}</a></li>
-                                            ))}
-                                        </ul>
-                                    </li>
+                                    {navItems.map(item => renderMenuItem(item))}
                                 </ul>
                             </div>
                         </div>
