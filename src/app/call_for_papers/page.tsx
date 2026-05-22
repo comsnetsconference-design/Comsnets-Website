@@ -480,6 +480,9 @@ export default function CallForPapersPage() {
                     COMSNETS provides generous travel grants to International student applicants who have an
                     accepted paper in the conference. Please see the <a href="/" style={{ color: '#7dd3fc', fontWeight: 600 }}>home page</a> for details.
                   </div>
+                  <a href="/assets/CALL FOR PAPERS COMSNETS.pdf" download className="cfp-download-btn" style={{ marginTop: '22px', fontSize: '16px', padding: '14px 30px' }}>
+                    <i className="fa fa-download"></i> Download Call for Papers (PDF)
+                  </a>
                 </div>
 
                 {/* Topics of Interest */}
