@@ -5,6 +5,8 @@ import PhotosGrid from '@/components/PhotosGrid';
 import VenueCard from '@/components/VenueCard';
 import Sidebar from '@/components/Sidebar';
 import CTAStrip from '@/components/CTAStrip';
+import CFPDownload from '@/components/CFPDownload';
+import KeynoteSpeakers from '@/components/KeynoteSpeakers';
 
 export default function Home() {
   return (
@@ -18,7 +20,9 @@ export default function Home() {
           
           {/* ▌ MAIN */}
           <main className="hp-main">
+            <CFPDownload />
             <Memories />
+            <KeynoteSpeakers />
             <AboutSection />
             <PhotosGrid />
             <VenueCard />
@@ -35,3 +39,4 @@ export default function Home() {
     </>
   );
 }
+
