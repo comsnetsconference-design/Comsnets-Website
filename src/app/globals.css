@@ -155,6 +155,11 @@ main.legacy-main {
   max-width: var(--page-w);
   margin: 0 auto;
   padding: 0 var(--page-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 .hero-logo-row {
   display: flex;
@@ -230,6 +235,49 @@ main.legacy-main {
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 26px;
+}
+
+.hero-partners {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 40px 22px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-partners span {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #333;
+  margin-bottom: 14px;
+}
+
+.hero-partners-logos {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-partners-logos a img {
+  height: 70px;
+  width: auto;
+  max-width: 100%;
+  transition: transform 0.2s ease;
+}
+
+.hero-partners-logos a img:hover {
+  transform: scale(1.06);
 }
 
 /* ══════════════════════════════════
@@ -598,6 +646,16 @@ main.legacy-main {
     flex: 0 0 auto;
     min-height: 200px;
   }
+  .hero-partners {
+    padding: 14px 18px 16px !important;
+  }
+  .hero-partners-logos a img {
+    height: 45px !important;
+  }
+  .hero-partners span {
+    font-size: 10px !important;
+    letter-spacing: 1.5px !important;
+  }
 }
 
 /* ================================================================
@@ -741,3 +799,47 @@ main.legacy-main {
   overflow: hidden;
   background-color: #e5e5e5;
 }
+
+/* ══════════════════════════════════
+   INTERACTIVE BUTTONS / IMAGES (CSS)
+   ══════════════════════════════════ */
+.btn-cfp-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  color: #123456;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: all 0.22s ease;
+}
+
+.btn-cfp-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  color: #123456;
+  text-decoration: none;
+}
+
+.keynote-speaker-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center top;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+  border: 2px solid var(--col-border, #e1e8f0);
+  display: block;
+  margin: 0 auto 12px;
+  transition: transform 0.22s ease;
+}
+
+.keynote-speaker-img:hover {
+  transform: scale(1.06);
+}
+
