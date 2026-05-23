@@ -109,6 +109,22 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         <i className="fa fa-star" style={{ marginRight: '8px' }}></i> Sponsored Events
                       </Link>
                     </li>
+                    <li className={pathname.includes('/admin/navbar') ? 'active' : ''}>
+                      <Link 
+                        href="/admin/navbar" 
+                        style={{ 
+                          display: 'block', 
+                          padding: '10px 15px', 
+                          background: pathname.includes('/admin/navbar') ? '#0a1628' : '#f8f9fa', 
+                          color: pathname.includes('/admin/navbar') ? '#fff' : '#333', 
+                          borderRadius: '4px', 
+                          textDecoration: 'none',
+                          fontWeight: pathname.includes('/admin/navbar') ? 'bold' : 'normal'
+                        }}
+                      >
+                        <i className="fa fa-bars" style={{ marginRight: '8px' }}></i> Manage Navigation
+                      </Link>
+                    </li>
                   </ul>
                   <div style={{ marginTop: '30px', borderTop: '1px solid #eee', paddingTop: '15px' }}>
                     <p style={{ fontSize: '12px', color: '#666', marginBottom: '10px', wordBreak: 'break-all' }}>
