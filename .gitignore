@@ -56,3 +56,6 @@ migration-status.csv
 
 
 .agents/
+
+# firebase
+.firebase/
