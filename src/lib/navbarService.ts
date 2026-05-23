@@ -90,5 +90,26 @@ export const DEFAULT_NAVBAR: MenuItem[] = [
         ]
     },
     { id: 'photos', label: 'Photos', path: 'https://www.comsnets.org/photos.html', isExternal: true },
-    { id: 'archive', label: 'Archive', path: '#', isArchive: true } as any
+    {
+        id: 'archive', label: 'Archive', path: '#', children: [
+            { id: '2026', label: '2026', path: '/archive/2026/' },
+            { id: '2025', label: '2025', path: '/archive/2025/' },
+            { id: '2024', label: '2024', path: '/archive/2024/' },
+            { id: '2023', label: '2023', path: '/archive/2023/' },
+            { id: '2022', label: '2022', path: '/archive/2022/' },
+            { id: '2021', label: '2021', path: '/archive/2021/' },
+            { id: '2020', label: '2020', path: '/archive/2020/' },
+            { id: '2019', label: '2019', path: '/archive/2019/' },
+            { id: '2018', label: '2018', path: '/archive/2018/' },
+            { id: '2017', label: '2017', path: '/archive/2017/' },
+            { id: '2016', label: '2016', path: '/archive/2016/' },
+            { id: '2015', label: '2015', path: '/archive/2015/' },
+            { id: '2014', label: '2014', path: '/archive/2014/' },
+            { id: '2013', label: '2013', path: '/archive/2013/' },
+            { id: '2012', label: '2012', path: '/archive/2012/' },
+            { id: '2011', label: '2011', path: '/archive/2011/' },
+            { id: '2010', label: '2010', path: '/archive/2010/' },
+            { id: '2009', label: '2009', path: '/archive/2009/' }
+        ]
+    }
 ];
