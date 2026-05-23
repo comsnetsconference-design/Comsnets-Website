@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { getNavbarConfig, MenuItem, DEFAULT_NAVBAR } from '../lib/navbarService';
@@ -10,6 +10,28 @@ export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [navItems, setNavItems] = useState<MenuItem[]>(DEFAULT_NAVBAR);
     const [mounted, setMounted] = useState(false);
+
+    const navbarRef = useRef<HTMLDivElement>(null);
+
+    // Auto-close menu and dropdowns when navigating
+    useEffect(() => {
+        setMobileMenuOpen(false);
+        setOpenDropdown(null);
+    }, [pathname]);
+
+    // Handle clicks outside the navbar to close menus
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
+                setOpenDropdown(null);
+                setMobileMenuOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     useEffect(() => {
         setMounted(true);
@@ -40,7 +62,10 @@ export default function Navbar() {
 
     const toggleDropdown = (name: string, e: React.MouseEvent) => {
         e.preventDefault();
-        setOpenDropdown(openDropdown === name ? null : name);
+        // Only toggle via click on mobile/tablet viewports
+        if (window.innerWidth < 1024 || window.matchMedia('(max-width: 1023px)').matches) {
+            setOpenDropdown(openDropdown === name ? null : name);
+        }
     };
 
     const isActive = (path: string) => pathname === path ? 'active' : '';
@@ -65,38 +90,43 @@ export default function Navbar() {
 
         const isHash = item.path === '#';
         if (isHash) {
-            return <li key={item.id} className={isActive(item.path)}><a>{item.label}</a></li>;
+            return (
+                <li key={item.id} className={isActive(item.path)}>
+                    <a onClick={() => { setOpenDropdown(null); setMobileMenuOpen(false); }}>{item.label}</a>
+                </li>
+            );
         }
 
         return (
             <li key={item.id} className={pathname === item.path ? 'active' : ''}>
                 {item.isExternal ? (
-                    <a href={item.path} target="_blank" rel="noopener noreferrer">{item.label}</a>
+                    <a href={item.path} target="_blank" rel="noopener noreferrer" onClick={() => { setOpenDropdown(null); setMobileMenuOpen(false); }}>{item.label}</a>
                 ) : (
-                    <Link href={item.path}>{item.label}</Link>
+                    <Link href={item.path} onClick={() => { setOpenDropdown(null); setMobileMenuOpen(false); }}>{item.label}</Link>
                 )}
             </li>
         );
     };
 
-    // To prevent hydration mismatch, we render the EXACT SAME structure on server and first client render.
-    // Since navItems defaults to DEFAULT_NAVBAR, it will match.
-    // The useEffect will then trigger a client-side update if custom config exists.
     return (
-        <div className="navbar-sm" id="main-menu-container">
+        <div className="navbar-sm" id="main-menu-container" ref={navbarRef}>
             <div className="navbar-primary" id="navbar-primary">
                 <nav className="navbar navbar-inverse" role="navigation" aria-label="Main Navigation">
-                    <div className="container-fluid" style={{ padding: '0 10px' }}>
+                    <div className="container-fluid navbar-container">
                         <div className="navbar-header">
-                            <button type="button" className="navbar-toggle collapsed" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle navigation menu">
+                            <Link href="/" className="navbar-brand-mobile">
+                                <img src="/assets/images/comsnets_header.png" alt="Logo" className="navbar-logo-mobile" />
+                                <span className="navbar-title-mobile">COMSNETS 2027</span>
+                            </Link>
+                            <button type="button" className={`navbar-toggle ${mobileMenuOpen ? '' : 'collapsed'}`} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle navigation menu">
                                 <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar" style={{ display: 'block', width: '22px', height: '2px', backgroundColor: '#fff', borderRadius: '1px', marginTop: '4px' }}></span>
-                                <span className="icon-bar" style={{ display: 'block', width: '22px', height: '2px', backgroundColor: '#fff', borderRadius: '1px', marginTop: '4px' }}></span>
-                                <span className="icon-bar" style={{ display: 'block', width: '22px', height: '2px', backgroundColor: '#fff', borderRadius: '1px', marginTop: '4px' }}></span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
                             </button>
                         </div>
 
-                        <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'in' : ''}`} id="bs-example-navbar-collapse-2">
+                        <div className={`navbar-collapse ${mobileMenuOpen ? 'in' : ''}`} id="bs-example-navbar-collapse-2">
                             <ul className="nav navbar-nav">
                                 {navItems.map(item => renderMenuItem(item))}
                             </ul>
@@ -107,3 +137,5 @@ export default function Navbar() {
         </div>
     );
 }
+
+
