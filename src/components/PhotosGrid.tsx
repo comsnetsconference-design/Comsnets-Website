@@ -17,25 +17,25 @@ export default function PhotosGrid() {
                 {hasPhotos ? (
                     <>
                         {/* Example photo cells */}
-                        <div className="photo-cell"><Link href="/photos"><img src="/assets/images/2026_Photos/sample1.jpg" alt="COMSNETS 2026" /></Link></div>
-                        <div className="photo-cell"><Link href="/photos"><img src="/assets/images/2026_Photos/sample2.jpg" alt="COMSNETS 2026" loading="lazy" /></Link></div>
-                        <div className="photo-cell"><Link href="/photos"><img src="/assets/images/2026_Photos/sample3.jpg" alt="COMSNETS 2026" loading="lazy" /></Link></div>
-                        <div className="photo-cell"><Link href="/photos"><img src="/assets/images/2026_Photos/sample4.jpg" alt="COMSNETS 2026" loading="lazy" /></Link></div>
-                        <div className="photo-cell"><Link href="/photos"><img src="/assets/images/2026_Photos/sample5.jpg" alt="COMSNETS 2026" loading="lazy" /></Link></div>
-                        <div className="photo-cell"><Link href="/photos"><img src="/assets/images/2026_Photos/sample6.jpg" alt="COMSNETS 2026" loading="lazy" /></Link></div>
-                        <div className="photo-cell"><Link href="/photos"><img src="/assets/images/2026_Photos/sample7.jpg" alt="COMSNETS 2026" loading="lazy" /></Link></div>
+                        <div className="photo-cell"><a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer"><img src="/assets/images/2026_Photos/sample1.jpg" alt="COMSNETS 2026" /></a></div>
+                        <div className="photo-cell"><a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer"><img src="/assets/images/2026_Photos/sample2.jpg" alt="COMSNETS 2026" loading="lazy" /></a></div>
+                        <div className="photo-cell"><a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer"><img src="/assets/images/2026_Photos/sample3.jpg" alt="COMSNETS 2026" loading="lazy" /></a></div>
+                        <div className="photo-cell"><a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer"><img src="/assets/images/2026_Photos/sample4.jpg" alt="COMSNETS 2026" loading="lazy" /></a></div>
+                        <div className="photo-cell"><a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer"><img src="/assets/images/2026_Photos/sample5.jpg" alt="COMSNETS 2026" loading="lazy" /></a></div>
+                        <div className="photo-cell"><a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer"><img src="/assets/images/2026_Photos/sample6.jpg" alt="COMSNETS 2026" loading="lazy" /></a></div>
+                        <div className="photo-cell"><a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer"><img src="/assets/images/2026_Photos/sample7.jpg" alt="COMSNETS 2026" loading="lazy" /></a></div>
                     </>
                 ) : (
                     <div style={{ gridColumn: 'span 4', padding: '50px', textAlign: 'center', color: 'var(--col-muted)' }}>
                         <i className="fa fa-camera" style={{ fontSize: '32px', opacity: 0.3, display: 'block', marginBottom: '10px' }}></i>
-                        Photos available in the <Link href="/photos">gallery</Link>.
+                        Photos available in the <a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer">gallery</a>.
                     </div>
                 )}
             </div>
             <p style={{ marginTop: '14px' }}>
-                <Link href="/photos" className="btn-hp btn-soft" style={{ fontSize: '13px' }}>
+                <a href="https://www.comsnets.org/photos.html" target="_blank" rel="noopener noreferrer" className="btn-hp btn-soft" style={{ fontSize: '13px' }}>
                     <i className="fa fa-images"></i> View All Photos
-                </Link>
+                </a>
             </p>
         </section>
     );
