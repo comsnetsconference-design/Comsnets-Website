@@ -8,6 +8,7 @@ export interface MenuItem {
     isExternal?: boolean;
     children?: MenuItem[];
     isSectionHeader?: boolean;
+    isArchive?: boolean;
 }
 
 export const NAVBAR_COLLECTION = 'settings';
@@ -41,16 +42,17 @@ export const saveNavbarConfig = async (items: MenuItem[]): Promise<boolean> => {
     }
 };
 
-// Default structure as fallback
+// Default structure as fallback. Mirrors the live Firestore `settings/navbar` doc
+// so SSR's first paint matches what the client fetches -> no flash, both pages identical.
 export const DEFAULT_NAVBAR: MenuItem[] = [
     { id: 'home', label: 'Home', path: '/' },
-    { 
+    {
         id: 'about', label: 'About', path: '#', children: [
             { id: 'oc', label: 'Organizing Committee', path: '/organizing_committee' },
             { id: 'tpc', label: 'Program Committee', path: '/technical_program_committee' },
             { id: 'assoc', label: 'COMSNETS Association', path: 'http://www.comsnets-association.org/', isExternal: true },
             { id: 'contact', label: 'Contact Us', path: '/contact' }
-        ] 
+        ]
     },
     {
         id: 'conference', label: 'Conference', path: '#', children: [
@@ -58,10 +60,22 @@ export const DEFAULT_NAVBAR: MenuItem[] = [
             { id: 'keynote', label: 'Keynote Speakers', path: '/keynote_speakers' },
             { id: 'invited', label: 'Invited Speakers', path: '/invited_speakers' },
             { id: 'tr-header', label: 'Tracks', path: '#', isSectionHeader: true },
+            { id: 'plenary', label: 'Planetary Debate', path: '/plenary_debate' },
             { id: 'panel', label: 'Panel Discussions', path: '/panel_discussions' },
             { id: 'demos', label: 'Demos & Exhibits', path: '/demos_exhibits' },
             { id: 'poster', label: 'Poster Session', path: '/poster_session' },
             { id: 'graduate', label: 'Graduate Forum', path: '/graduate_forum' }
+        ]
+    },
+    {
+        id: 'workshops', label: 'Workshops', path: '/', children: [
+            { id: 'ws-overview', label: 'All Workshops Overview', path: '/workshops' },
+            { id: 'ws-minds', label: 'MINDS', path: '/minds_workshop' },
+            { id: 'ws-csp', label: 'CSP', path: '/cybersecurity_and_privacy_workshop' },
+            { id: 'ws-sdr', label: 'SDR', path: '/standards-driven_research' },
+            { id: 'ws-advnet', label: 'ADVnet', path: '/ADVnet' },
+            { id: 'ws-sysai', label: 'SysAI', path: '/SysAI' },
+            { id: 'ws-iart', label: 'I+ART', path: '/iart' }
         ]
     },
     {
@@ -90,5 +104,6 @@ export const DEFAULT_NAVBAR: MenuItem[] = [
         ]
     },
     { id: 'photos', label: 'Photos', path: 'https://www.comsnets.org/photos.html', isExternal: true },
-    { id: 'archive', label: 'Archive', path: '#', isArchive: true } as any
+    { id: 'keynotes-top', label: 'Keynotes', path: '/keynote_speakers' },
+    { id: 'archive', label: 'Archive', path: '#', isArchive: true, children: [] } as any
 ];

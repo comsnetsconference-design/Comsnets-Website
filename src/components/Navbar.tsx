@@ -62,10 +62,8 @@ export default function Navbar() {
 
     const toggleDropdown = (name: string, e: React.MouseEvent) => {
         e.preventDefault();
-        // Only toggle via click on mobile/tablet viewports
-        if (window.innerWidth < 1024 || window.matchMedia('(max-width: 1023px)').matches) {
-            setOpenDropdown(openDropdown === name ? null : name);
-        }
+        // Click toggles pin/unpin on all viewports. Desktop also keeps CSS :hover.
+        setOpenDropdown(openDropdown === name ? null : name);
     };
 
     const isActive = (path: string) => pathname === path ? 'active' : '';
@@ -75,9 +73,31 @@ export default function Navbar() {
             return <li key={item.id} className="dropdown-header">{item.label}</li>;
         }
 
+        // When entering a different dropdown, unpin the previous one so two never render at once.
+        const handleDropdownEnter = () => {
+            if (openDropdown && openDropdown !== item.id) setOpenDropdown(null);
+        };
+
+        // Archive: years generated in code (2026 + 2021..2009). Bump the upper bound annually.
+        if (item.isArchive) {
+            return (
+                <li key={item.id} className={`dropdown ${openDropdown === item.id ? 'open' : ''}`} onMouseEnter={handleDropdownEnter}>
+                    <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown(item.id, e)}>
+                        {item.label}<span className="caret"></span>
+                    </a>
+                    <ul className="dropdown-menu" role="menu" style={{ minWidth: 150, maxHeight: 300, overflowY: 'auto' }}>
+                        <li><a href="https://www.comsnets.org/archive/2026/" target="_blank" rel="noopener noreferrer">2026</a></li>
+                        {Array.from({ length: 2021 - 2009 + 1 }, (_, i) => 2021 - i).map(year => (
+                            <li key={year}><a href={`https://www.comsnets.org/archive/${year}`} target="_blank" rel="noopener noreferrer">{year}</a></li>
+                        ))}
+                    </ul>
+                </li>
+            );
+        }
+
         if (item.children && item.children.length > 0) {
             return (
-                <li key={item.id} className={`dropdown ${openDropdown === item.id ? 'open' : ''}`}>
+                <li key={item.id} className={`dropdown ${openDropdown === item.id ? 'open' : ''}`} onMouseEnter={handleDropdownEnter}>
                     <a href="#" className="dropdown-toggle" onClick={(e) => toggleDropdown(item.id, e)}>
                         {item.label}<span className="caret"></span>
                     </a>
