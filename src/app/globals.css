@@ -931,6 +931,19 @@ button.navbar-toggle .icon-bar,
 
   .dropdown:hover > .dropdown-menu { display: block !important; }
 
+  /* Bridge the hover gap between main menu items and absolute dropdown menus */
+  #navbar-primary .navbar-nav > li.dropdown::before {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    right: 0;
+    height: 15px;
+    background: transparent;
+    z-index: 10;
+    pointer-events: auto;
+  }
+
   #navbar-primary .navbar-nav > li.dropdown:hover > a.dropdown-toggle {
     background: rgba(255,255,255,0.12) !important;
     color: #fff !important;
