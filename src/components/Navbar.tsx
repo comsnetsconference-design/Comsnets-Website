@@ -58,6 +58,16 @@ export default function Navbar() {
         };
 
         loadNavbar();
+
+        const handleNavbarUpdate = () => {
+            sessionStorage.removeItem('navbar_config');
+            loadNavbar();
+        };
+
+        window.addEventListener('navbarUpdated', handleNavbarUpdate);
+        return () => {
+            window.removeEventListener('navbarUpdated', handleNavbarUpdate);
+        };
     }, []);
 
     const toggleDropdown = (name: string, e: React.MouseEvent) => {
