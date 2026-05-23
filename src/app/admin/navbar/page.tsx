@@ -108,14 +108,16 @@ export default function ManageNavbar() {
         <div>
             <div className="d-flex justify-content-between align-items-center mb-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <h2 style={{ margin: 0 }}>Custom Navbar Design</h2>
-                <button 
-                    onClick={handleSave} 
-                    className="btn btn-primary"
-                    disabled={saving}
-                    style={{ background: '#0a1628', border: 'none', padding: '10px 20px' }}
-                >
-                    {saving ? 'Saving...' : 'Save Configuration'}
-                </button>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                    <button 
+                        onClick={handleSave} 
+                        className="btn btn-primary"
+                        disabled={saving}
+                        style={{ background: '#0a1628', border: 'none', padding: '10px 20px' }}
+                    >
+                        {saving ? 'Saving...' : 'Save Configuration'}
+                    </button>
+                </div>
             </div>
 
             {message.text && (
