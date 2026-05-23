@@ -258,11 +258,29 @@ const cfpStyles = `
 }
 
 .cfp-chair-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
     padding: 18px 22px;
     margin-bottom: 12px;
+}
+
+.cfp-chair-card .chair-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid #e2e8f0;
+    background: #fff;
+}
+
+.cfp-chair-card .chair-info {
+    flex: 1;
+    min-width: 0;
 }
 
 .cfp-chair-card .chair-name {
@@ -473,14 +491,20 @@ export default function DemosExhibitsPage() {
           <div className="cfp-section">
             <h3 className="cfp-section-title"><i className="fa fa-users"></i> Demos &amp; Exhibits Co-Chairs</h3>
             <div className="cfp-chair-card">
-              <div className="chair-name">Alok Ranjan</div>
-              <div className="chair-affil">Bosch, India</div>
-              <div className="chair-email"><a href="mailto:alok_ranjan@ieee.org">alok_ranjan@ieee.org</a></div>
+              <img className="chair-photo" src="/assets/images/committee_2023/alok_ranjan.jpg" alt="Alok Ranjan" />
+              <div className="chair-info">
+                <div className="chair-name">Alok Ranjan</div>
+                <div className="chair-affil">Bosch, India</div>
+                <div className="chair-email"><a href="mailto:alok_ranjan@ieee.org">alok_ranjan@ieee.org</a></div>
+              </div>
             </div>
             <div className="cfp-chair-card">
-              <div className="chair-name">Kaustubh Dhondge</div>
-              <div className="chair-affil">IIIT Surat, India</div>
-              <div className="chair-email"><a href="mailto:kaustubh.dhondge@iiitsurat.ac.in">kaustubh.dhondge@iiitsurat.ac.in</a></div>
+              <img className="chair-photo" src="/assets/images/unnamed%20-%20Kaustubh%20Dhondge(1).png" alt="Kaustubh Dhondge" />
+              <div className="chair-info">
+                <div className="chair-name">Kaustubh Dhondge</div>
+                <div className="chair-affil">IIIT Surat, India</div>
+                <div className="chair-email"><a href="mailto:kaustubh.dhondge@iiitsurat.ac.in">kaustubh.dhondge@iiitsurat.ac.in</a></div>
+              </div>
             </div>
           </div>
 

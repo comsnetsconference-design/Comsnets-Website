@@ -459,11 +459,7 @@ export default function CallForPapersPage() {
         <div className="row">
           <div className="col-md-9 page-content">
             <div className="well well-white">
-              <h1 className="page-title" id="head" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>
-                Call for Papers
-              </h1>
-
-              <div className="cfp-page">
+              <div className="cfp-page" id="head">
 
                 {/* Hero Section */}
                 <div className="cfp-hero">

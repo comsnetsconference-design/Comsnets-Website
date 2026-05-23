@@ -1175,3 +1175,49 @@ button.navbar-toggle .icon-bar,
   transform: scale(1.06);
 }
 
+
+/* ══════════════════════════════════════════════════════════════════
+   PAGE WRAPPER STANDARDIZATION (added v0.2.02)
+   Goal: every page renders as a centered 1200px polished card.
+   Targets the legacy `.container > .row > .col-md-9.page-content > .well.well-white`
+   structure used by ~110 pages, plus the 3 custom wrappers
+   (.cfp-page, .hp-reg-wrapper, .content-card).
+   ══════════════════════════════════════════════════════════════════ */
+
+/* 1) Widen the Bootstrap container when it wraps page-content (or /visa's malformed col-md-9.well-white combo) */
+body .container:has(> .row > .col-md-9.page-content),
+body .container:has(> .col-md-9.well-white) {
+  max-width: 1280px;
+  width: 100%;
+}
+
+/* 2) Defeat col-md-9's 75% width — let the well fill the row */
+body .container > .row > .col-md-9.page-content {
+  flex: 0 0 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* 3) Style .well-white as a polished card. float:none + width:100% handles the /visa
+      page where col-md-9 and well-white are combined on one div (col-md-9 floats left).
+      display:flow-root acts as a clearfix so floating Bootstrap col-* children
+      (e.g. /TTDF, /brochure) stay contained inside the card. */
+body .well-white {
+  background: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 40px);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  float: none;
+  width: 100%;
+  display: flow-root;
+}
+
+/* 4) Cap the 3 custom wrappers at 1200px so they converge too */
+.cfp-page,
+.hp-reg-wrapper,
+.content-card {
+  max-width: 1200px;
+  margin: 0 auto;
+}

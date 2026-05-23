@@ -104,6 +104,5 @@ export const DEFAULT_NAVBAR: MenuItem[] = [
         ]
     },
     { id: 'photos', label: 'Photos', path: 'https://www.comsnets.org/photos.html', isExternal: true },
-    { id: 'keynotes-top', label: 'Keynotes', path: '/keynote_speakers' },
     { id: 'archive', label: 'Archive', path: '#', isArchive: true, children: [] } as any
 ];
