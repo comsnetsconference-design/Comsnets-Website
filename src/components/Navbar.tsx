@@ -99,8 +99,8 @@ export default function Navbar() {
 
         return (
             <li key={item.id} className={pathname === item.path ? 'active' : ''}>
-                {item.isExternal ? (
-                    <a href={item.path} target="_blank" rel="noopener noreferrer" onClick={() => { setOpenDropdown(null); setMobileMenuOpen(false); }}>{item.label}</a>
+                {item.isExternal || item.path.startsWith('/archive/') || item.path.startsWith('http') ? (
+                    <a href={item.path} target={item.isExternal ? "_blank" : "_self"} rel={item.isExternal ? "noopener noreferrer" : undefined} onClick={() => { setOpenDropdown(null); setMobileMenuOpen(false); }}>{item.label}</a>
                 ) : (
                     <Link href={item.path} onClick={() => { setOpenDropdown(null); setMobileMenuOpen(false); }}>{item.label}</Link>
                 )}
