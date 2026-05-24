@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageGuard from "@/components/PageGuard";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -26,7 +27,11 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${outfit.variable} min-h-screen flex flex-col`}>
         <Navbar />
-        <main className="flex-grow legacy-main hp">{children}</main>
+        <main className="flex-grow legacy-main hp">
+          <PageGuard>
+            {children}
+          </PageGuard>
+        </main>
         <Footer />
       </body>
     </html>

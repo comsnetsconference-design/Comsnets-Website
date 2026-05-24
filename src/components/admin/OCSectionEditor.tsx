@@ -49,6 +49,23 @@ export default function OCSectionEditor({
     setFormData({ ...formData, members: updatedMembers });
   };
 
+  const moveMember = (index: number, direction: 'up' | 'down') => {
+    if (!formData.members) return;
+    
+    if (direction === 'up' && index === 0) return;
+    if (direction === 'down' && index === formData.members.length - 1) return;
+    
+    const swapIndex = direction === 'up' ? index - 1 : index + 1;
+    const updatedMembers = [...formData.members];
+    
+    // Swap elements
+    const temp = updatedMembers[index];
+    updatedMembers[index] = updatedMembers[swapIndex];
+    updatedMembers[swapIndex] = temp;
+    
+    setFormData({ ...formData, members: updatedMembers });
+  };
+
   const saveContent = async () => {
     setIsSaving(true);
     await onSave(formData.id, formData);
@@ -103,12 +120,30 @@ export default function OCSectionEditor({
       
       {formData.members && formData.members.map((member, idx) => (
         <div key={idx} style={{ background: '#f8f9fa', padding: '15px', borderRadius: '6px', marginBottom: '15px', position: 'relative' }}>
-          <button 
-            onClick={() => removeMember(idx)}
-            style={{ position: 'absolute', top: '10px', right: '10px', background: '#dc3545', color: '#fff', border: 'none', borderRadius: '4px', padding: '4px 8px', cursor: 'pointer' }}
-          >
-            Remove
-          </button>
+          <div style={{ position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '5px' }}>
+            <button 
+              onClick={() => moveMember(idx, 'up')}
+              disabled={idx === 0}
+              style={{ background: '#e9ecef', color: '#333', border: '1px solid #ced4da', borderRadius: '4px', padding: '4px 8px', cursor: idx === 0 ? 'not-allowed' : 'pointer', opacity: idx === 0 ? 0.5 : 1 }}
+              title="Move Up"
+            >
+              <i className="fa fa-arrow-up"></i>
+            </button>
+            <button 
+              onClick={() => moveMember(idx, 'down')}
+              disabled={formData.members && idx === formData.members.length - 1}
+              style={{ background: '#e9ecef', color: '#333', border: '1px solid #ced4da', borderRadius: '4px', padding: '4px 8px', cursor: (formData.members && idx === formData.members.length - 1) ? 'not-allowed' : 'pointer', opacity: (formData.members && idx === formData.members.length - 1) ? 0.5 : 1 }}
+              title="Move Down"
+            >
+              <i className="fa fa-arrow-down"></i>
+            </button>
+            <button 
+              onClick={() => removeMember(idx)}
+              style={{ background: '#dc3545', color: '#fff', border: 'none', borderRadius: '4px', padding: '4px 8px', cursor: 'pointer', marginLeft: '5px' }}
+            >
+              Remove
+            </button>
+          </div>
           <div style={{ display: 'flex', gap: '15px', marginBottom: '10px', flexWrap: 'wrap' }}>
             <div style={{ flex: '1 1 45%' }}>
               <label style={{ display: 'block', fontSize: '12px', color: '#666' }}>Name</label>
