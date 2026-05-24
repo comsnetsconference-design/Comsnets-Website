@@ -36,22 +36,10 @@ export default function Navbar() {
     useEffect(() => {
         setMounted(true);
         const loadNavbar = async () => {
-            // Try cache first
-            const cached = sessionStorage.getItem('navbar_config');
-            if (cached) {
-                try {
-                    setNavItems(JSON.parse(cached));
-                    return;
-                } catch (e) {
-                    console.error("Failed to parse cached navbar", e);
-                }
-            }
-
             // Fetch from Firestore
             const config = await getNavbarConfig();
             if (config && config.length > 0) {
                 setNavItems(config);
-                sessionStorage.setItem('navbar_config', JSON.stringify(config));
             } else {
                 setNavItems(DEFAULT_NAVBAR);
             }

@@ -24,6 +24,7 @@ export default function Footer() {
                           <li style={{ marginBottom: '8px' }}><Link href="/schedule" style={{ color: 'var(--col-muted, #64748b)', textDecoration: 'none', fontSize: '14px', transition: 'color 0.2s' }}>→ Schedule</Link></li>
                           <li style={{ marginBottom: '8px' }}><Link href="/contact" style={{ color: 'var(--col-muted, #64748b)', textDecoration: 'none', fontSize: '14px', transition: 'color 0.2s' }}>→ Contact Us</Link></li>
                           <li style={{ marginBottom: '8px' }}><Link href="/archive/2026/" style={{ color: 'var(--col-muted, #64748b)', textDecoration: 'none', fontSize: '14px', transition: 'color 0.2s' }}>→ COMSNETS 2026 Archive</Link></li>
+                          <li style={{ marginBottom: '8px', marginTop: '15px' }}><Link href="/admin" style={{ color: 'var(--col-accent, #2a5298)', textDecoration: 'none', fontSize: '14px', fontWeight: 'bold', transition: 'color 0.2s' }}>→ Admin Portal</Link></li>
                       </ul>
                   </div>
                   <div className="w-full md:w-1/3 px-4" style={{ marginBottom: '25px' }}>

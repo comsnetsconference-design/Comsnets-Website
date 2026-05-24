@@ -29,10 +29,6 @@ export default function ManageNavbar() {
         if (success) {
             setMessage({ text: 'Navbar configuration saved successfully!', type: 'success' });
             // Clear cache for users to see updates
-            if (typeof window !== 'undefined') {
-                sessionStorage.removeItem('navbar_config');
-                window.dispatchEvent(new Event('navbarUpdated'));
-            }
         } else {
             setMessage({ text: 'Failed to save configuration. Please check permissions.', type: 'danger' });
         }
