@@ -41,102 +41,110 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const isLoginPage = pathname === '/admin/login';
 
-  return (
-    <div className="admin-layout-wrapper">
-      <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
+  const menuItems = [
+    { href: '/admin/oc', icon: 'fa-users', label: 'Organizing Committee' },
+    { href: '/admin/speakers', icon: 'fa-microphone', label: 'Manage Speakers' },
+    { href: '/admin/sponsored-events', icon: 'fa-star', label: 'Sponsored Events' },
+    { href: '/admin/navbar', icon: 'fa-bars', label: 'Manage Navigation' },
+    { href: '/admin/pages', icon: 'fa-file-text-o', label: 'Manage Pages' },
+  ];
 
-      {/* 
-        CRITICAL FIX: We must always render {children} to maintain a stable hook count 
-        in Next.js internal components. We use display:none to hide the UI during loading.
-      */}
-      <div style={{ display: loading ? 'none' : 'block' }}>
-        {isLoginPage ? (
-          <div key="login-view">
-            {children}
+  if (loading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center bg-slate-50">
+        <div className="text-slate-500 font-medium">Loading Admin Panel...</div>
+      </div>
+    );
+  }
+
+  if (isLoginPage) {
+    return <div key="login-view">{children}</div>;
+  }
+
+  return (
+    <div className="admin-layout-wrapper font-sans bg-slate-50 flex flex-col" style={{ minHeight: 'calc(100vh - 80px)' }}>
+      {/* Spacer for global navbar */}
+      <div className="subpage-spacer max-md:hidden" style={{ height: '80px', background: '#0a1628' }}></div>
+
+      <div className="flex-1 flex flex-col md:flex-row w-full">
+        {/* Sidebar */}
+        <aside className="w-full md:w-64 bg-slate-900 text-white flex-shrink-0 shadow-lg max-md:hidden flex flex-col">
+          <div className="p-6">
+            <h2 className="text-xl font-bold tracking-wider !text-slate-100 uppercase mb-2">Admin Panel</h2>
+            <p className="!text-slate-400 text-xs mb-0">COMSNETS 2027</p>
           </div>
-        ) : (
-          <div key="admin-view" className="container" style={{ marginTop: '30px', marginBottom: '40px', minHeight: '60vh' }}>
-            <div className="row">
-              <div className="col-md-3">
-                <div className="well well-white" style={{ padding: '20px', position: 'sticky', top: '20px' }}>
-                  <h3 style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '15px', marginTop: 0 }}>Admin Menu</h3>
-                  <ul className="nav nav-pills nav-stacked" style={{ display: 'flex', flexDirection: 'column', gap: '5px', padding: 0 }}>
-                    <li className={pathname.includes('/admin/oc') ? 'active' : ''}>
-                      <Link 
-                        href="/admin/oc" 
-                        style={{ 
-                          display: 'block', 
-                          padding: '10px 15px', 
-                          background: pathname.includes('/admin/oc') ? '#0a1628' : '#f8f9fa', 
-                          color: pathname.includes('/admin/oc') ? '#fff' : '#333', 
-                          borderRadius: '4px', 
-                          textDecoration: 'none',
-                          fontWeight: pathname.includes('/admin/oc') ? 'bold' : 'normal'
-                        }}
-                      >
-                        <i className="fa fa-users" style={{ marginRight: '8px' }}></i> Organizing Committee
-                      </Link>
-                    </li>
-                    <li className={pathname.includes('/admin/speakers') ? 'active' : ''}>
-                      <Link 
-                        href="/admin/speakers" 
-                        style={{ 
-                          display: 'block', 
-                          padding: '10px 15px', 
-                          background: pathname.includes('/admin/speakers') ? '#0a1628' : '#f8f9fa', 
-                          color: pathname.includes('/admin/speakers') ? '#fff' : '#333', 
-                          borderRadius: '4px', 
-                          textDecoration: 'none',
-                          fontWeight: pathname.includes('/admin/speakers') ? 'bold' : 'normal'
-                        }}
-                      >
-                        <i className="fa fa-microphone" style={{ marginRight: '8px' }}></i> Manage Speakers
-                      </Link>
-                    </li>
-                    <li className={pathname.includes('/admin/sponsored-events') ? 'active' : ''}>
-                      <Link 
-                        href="/admin/sponsored-events" 
-                        style={{ 
-                          display: 'block', 
-                          padding: '10px 15px', 
-                          background: pathname.includes('/admin/sponsored-events') ? '#0a1628' : '#f8f9fa', 
-                          color: pathname.includes('/admin/sponsored-events') ? '#fff' : '#333', 
-                          borderRadius: '4px', 
-                          textDecoration: 'none',
-                          fontWeight: pathname.includes('/admin/sponsored-events') ? 'bold' : 'normal'
-                        }}
-                      >
-                        <i className="fa fa-star" style={{ marginRight: '8px' }}></i> Sponsored Events
-                      </Link>
-                    </li>
-                  </ul>
-                  <div style={{ marginTop: '30px', borderTop: '1px solid #eee', paddingTop: '15px' }}>
-                    <p style={{ fontSize: '12px', color: '#666', marginBottom: '10px', wordBreak: 'break-all' }}>
-                      <strong>User:</strong> {user?.email || "No Auth Configured"}
-                    </p>
-                    <button onClick={handleLogout} className="btn btn-default btn-sm" style={{ width: '100%', border: '1px solid #ddd' }}>
-                      <i className="fa fa-sign-out" style={{ marginRight: '5px' }}></i> Logout
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-9 page-content">
-                <div className="well well-white" style={{ padding: '30px' }}>
-                  {children}
-                </div>
+          <nav className="flex-1 px-4 space-y-2 mt-4">
+            {menuItems.map((item) => {
+              const active = pathname.includes(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    active ? 'bg-blue-600 !text-white shadow-sm' : '!text-slate-300 hover:bg-slate-800 hover:!text-white'
+                  }`}
+                >
+                  <i className={`fa ${item.icon} w-5 text-center`}></i>
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="p-4 border-t border-slate-800 mt-auto">
+            <div className="text-xs !text-slate-400 mb-3 truncate px-2">
+              Logged in as:<br />
+              <span className="font-semibold !text-slate-200">{user?.email || "No Auth"}</span>
+            </div>
+            <button 
+              onClick={handleLogout} 
+              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 !text-slate-300 rounded hover:bg-slate-700 hover:!text-white transition-colors text-sm font-medium border-0"
+            >
+              <i className="fa fa-sign-out"></i> Logout
+            </button>
+          </div>
+        </aside>
+
+        {/* Mobile Header */}
+        <div className="md:hidden bg-slate-900 !text-white p-4 flex items-center justify-between shadow-md mt-[60px]">
+          <div className="font-bold text-lg tracking-wider !text-white">Admin Panel</div>
+          <button onClick={handleLogout} className="!text-slate-300 hover:!text-white text-sm bg-transparent border-0">
+            Logout
+          </button>
+        </div>
+
+        {/* Main Content */}
+        <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-50">
+          {/* Mobile Navigation */}
+          <div className="md:hidden bg-white shadow-sm overflow-x-auto border-b border-gray-200">
+            <div className="flex p-2 gap-2 w-max">
+              {menuItems.map((item) => {
+                const active = pathname.includes(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
+                      active ? 'bg-blue-100 !text-blue-800' : '!text-slate-600 hover:bg-slate-100 hover:!text-slate-900'
+                    }`}
+                  >
+                    <i className={`fa ${item.icon}`}></i>
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Content Area */}
+          <div className="flex-1 overflow-auto p-4 md:p-8">
+            <div className="max-w-6xl mx-auto">
+              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8 min-h-[500px]">
+                {children}
               </div>
             </div>
           </div>
-        )}
+        </main>
       </div>
-
-      {loading && (
-        <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <p>Loading Admin Panel...</p>
-        </div>
-      )}
     </div>
   );
 }
-
-
