@@ -77,6 +77,9 @@ export default function SQST() {
                     <span className="font-bold text-slate-800 text-base">Raktim Halder</span> <span className="text-gray-500 text-[15px]">&mdash; IIT Bhubaneswar, India</span>
                   </li>
                   <li className="px-4 py-3 border-b border-gray-100 text-base text-gray-700 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 hover:bg-gray-50 last:border-b-0">
+                    <span className="font-bold text-slate-800 text-base">Rajiv Krishnakumar</span> <span className="text-gray-500 text-[15px]">&mdash; QuantumBasel, Switzerland</span>
+                  </li>
+                  <li className="px-4 py-3 border-b border-gray-100 text-base text-gray-700 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 hover:bg-gray-50 last:border-b-0">
                     <span className="font-bold text-slate-800 text-base">Ritajit Majumdar</span> <span className="text-gray-500 text-[15px]">&mdash; IBM Research, India</span>
                   </li>
                   <li className="px-4 py-3 border-b border-gray-100 text-base text-gray-700 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 hover:bg-gray-50 last:border-b-0">
@@ -117,9 +120,6 @@ export default function SQST() {
                   </li>
                   <li className="px-4 py-3 border-b border-gray-100 text-base text-gray-700 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 hover:bg-gray-50 last:border-b-0">
                     <span className="font-bold text-slate-800 text-base">Chiranjib Mukhopadhyay</span> <span className="text-gray-500 text-[15px]">&mdash; University of Electronic Sciences and Technology of China, China</span>
-                  </li>
-                  <li className="px-4 py-3 border-b border-gray-100 text-base text-gray-700 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 hover:bg-gray-50 last:border-b-0">
-                    <span className="font-bold text-slate-800 text-base">Rajiv Krishnakumar</span> <span className="text-gray-500 text-[15px]">&mdash; QuantumBasel, Switzerland</span>
                   </li>
                   <li className="px-4 py-3 border-b border-gray-100 text-base text-gray-700 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 hover:bg-gray-50 last:border-b-0">
                     <span className="font-bold text-slate-800 text-base">Kaushik Seshadreesan</span> <span className="text-gray-500 text-[15px]">&mdash; University of Pittsburgh, USA</span>
