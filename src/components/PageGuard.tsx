@@ -10,7 +10,14 @@ export default function PageGuard({ children }: { children: React.ReactNode }) {
   const [enabled, setEnabled] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Skip guard for admin routes and root home page if necessary, 
+    // Local development: bypass the gate so every page is previewable while
+    // building. Production builds (NODE_ENV=production) keep the guard active.
+    if (process.env.NODE_ENV === 'development') {
+      setEnabled(true);
+      return;
+    }
+
+    // Skip guard for admin routes and root home page if necessary,
     // but typically we don't block the homepage anyway.
     if (pathname.startsWith('/admin') || pathname === '/') {
       setEnabled(true);

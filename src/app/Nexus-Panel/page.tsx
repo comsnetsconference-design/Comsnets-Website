@@ -53,24 +53,25 @@ export default function NexusPanelPage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-9 page-content">
+          <div className="col-md-10 col-md-offset-1 page-content">
             <div className="well well-white">
-              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>
-                Fueling innovation in networking at the nexus of universities, industry, government, and startups
-              </h1>
+              <div className="event-hero">
+                <h1>Fueling innovation in networking at the nexus of universities, industry, government, and startups</h1>
+                <div className="event-details">COMSNETS 2027</div>
+              </div>
 
               <div style={{ padding: '20px' }}>
                 <h4><strong>Schedule: 5:00 to 6:30 on 6th January</strong></h4>
               </div>
 
               <hr/>
-              <h3 className="text-center">Panelists</h3>
+              <h3 className="section-title text-center">Panelists</h3>
               <hr/>
 
               {panelists.map((p) => (
                 <div key={p.name} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', marginBottom: '20px' }}>
                   <div style={{ padding: '20px' }}>
-                    <img src={p.img} alt={p.name} style={{ width: '150px', height: '150px' }} />
+                    <img src={p.img} alt={p.name} className="round-photo" />
                   </div>
                   <div style={{ textAlign: 'left' }}>
                     <h4>{p.name}</h4>
@@ -87,11 +88,9 @@ export default function NexusPanelPage() {
                         <br/>
                       </>
                     )}
-                    <details style={{ marginTop: '10px' }}>
-                      <summary style={{ cursor: 'pointer', marginBottom: '10px' }}>Bio</summary>
-                      <div style={{ padding: '20px', backgroundColor: 'lightgrey', borderRadius: '10px' }}>
-                        <p>{p.bio}</p>
-                      </div>
+                    <details className="bio-toggle" style={{ marginTop: '10px' }}>
+                      <summary>Bio</summary>
+                      <div><p>{p.bio}</p></div>
                     </details>
                   </div>
                 </div>
@@ -99,20 +98,14 @@ export default function NexusPanelPage() {
 
               <hr/>
 
-              <div className="panel panel-default">
-                <div className="panel-heading">
-                  <h4>Moderator</h4>
+              <h3 className="section-title text-center">Moderator</h3>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+                <div style={{ padding: '20px' }}>
+                  <img src="/assets/images/Committee_2024/Laxmi.jpg" alt="Laxmi Mukund" className="round-photo" />
                 </div>
-                <div style={{ paddingLeft: '.9%' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    <div style={{ padding: '20px' }}>
-                      <img src="/assets/images/Committee_2024/Laxmi.jpg" alt="Laxmi Mukund" style={{ width: '150px', height: '150px' }} />
-                    </div>
-                    <div style={{ textAlign: 'left' }}>
-                      <h4><a href="https://ece.iisc.ac.in/laxmi-mukund/" target="_blank" rel="noopener noreferrer">Laxmi Mukund</a></h4>
-                      <p>Cisco<br/>India</p>
-                    </div>
-                  </div>
+                <div style={{ textAlign: 'left', flex: '1 1 300px' }}>
+                  <h4><a href="https://ece.iisc.ac.in/laxmi-mukund/" target="_blank" rel="noopener noreferrer">Laxmi Mukund</a></h4>
+                  <p>Cisco<br/>India</p>
                 </div>
               </div>
             </div>

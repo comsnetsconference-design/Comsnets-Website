@@ -6,11 +6,18 @@ export default function AcceptedSocialNetworkingWorkshopPage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-9 page-content">
+          <div className="col-md-10 col-md-offset-1 page-content">
             <div className="well well-white">
-              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px', textTransform: 'none' }}>Accepted papers for the Social Networking Workshop</h1>
-              <p><em>The list below is from a previous edition of the Social Networking Workshop. Accepted papers for COMSNETS 2027 will be announced once finalized.</em></p>
+              <div className="event-hero">
+                <h1>Accepted papers for the Social Networking Workshop</h1>
+                <div className="event-details">COMSNETS 2027</div>
+              </div>
+              <div className="notice-preserved">
+                <i className="fa fa-info-circle" aria-hidden="true"></i>
+                <p>The list below is from a previous edition of the Social Networking Workshop. Accepted papers for COMSNETS 2027 will be announced once finalized.</p>
+              </div>
               {/* TODO: fill content for 2027 once accepted papers are announced */}
+              <h3 className="section-title">Accepted Papers</h3>
               <ul>
                 <li><strong>Modeling Opinion Dynamics in a Social Network Using Markov Random Field</strong><br />Kundan Kandhway (TCS Innovation Labs, Chennai, India)</li>
                 <li><strong>Knowledge based Community Detection in Online Social Network</strong><br />Paramita Dey (GCECT Kolkata, India), Agneet Chatterjee (Jadavpur University, Kolkata, India), and Sarbani Roy (Jadavpur University, Kolkata, India)</li>

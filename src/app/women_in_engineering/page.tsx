@@ -39,66 +39,34 @@ export default function WomenInEngineeringPage() {
         <div className="row">
           <div className="col-md-9 page-content">
             <div className="well well-white">
-              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Women in Engineering</h1>
-              {/* TODO: refresh date / venue / speaker list / co-chairs for COMSNETS 2027 */}
-
-              <div style={{
-                background: 'linear-gradient(135deg, #557AAB 0%, #1E4165 100%)',
-                color: 'white',
-                borderRadius: '16px',
-                padding: '2rem',
-                boxShadow: '0 8px 32px rgb(124 58 237 / 0.35)',
-                marginBottom: '2rem',
-                textAlign: 'center',
-              }}>
-                <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '0.3rem' }}>Women in Engineering</h2>
-                <p style={{ fontSize: '1.3rem', fontWeight: 600, marginBottom: '0.8rem' }}>Theme: AI with Purpose: Women Designing for Future</p>
-                <div style={{ fontSize: '1rem', fontWeight: 500, background: 'rgba(255,255,255,0.2)', padding: '0.6rem 1.2rem', display: 'inline-block', borderRadius: '9999px' }}>
-                  Event Date: 8<sup>th</sup> January 2026 &nbsp;&bull;&nbsp; 10:45 AM – 1:15 PM IST &nbsp;&bull;&nbsp; Venue: Sigma 1
-                </div>
+              <div className="event-hero">
+                <h1>Women in Engineering</h1>
+                <p className="lead">Theme: AI with Purpose: Women Designing for Future</p>
+                <div className="event-details">Event Date: 8<sup>th</sup> January 2026 &nbsp;&bull;&nbsp; 10:45 AM – 1:15 PM IST &nbsp;&bull;&nbsp; Venue: Sigma 1</div>
               </div>
 
-              <h4 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Schedule</h4>
-              <div style={{ marginBottom: '2rem' }}>
+              <h3 className="section-title" style={{ marginBottom: '1.5rem' }}>Schedule</h3>
+              <div className="sched" style={{ marginBottom: '2rem' }}>
                 {schedule.map((item, i) => (
-                  <div key={i} style={{
-                    display: 'flex',
-                    background: '#fff',
-                    borderRadius: '12px',
-                    boxShadow: '0 4px 20px rgba(70, 123, 229, 0.1)',
-                    marginBottom: '1.2rem',
-                    padding: '1rem 1.5rem',
-                    alignItems: 'center',
-                  }}>
-                    <div style={{
-                      background: 'linear-gradient(135deg, #557AAB 0%, #1E4165 100%)',
-                      color: 'white',
-                      fontWeight: 600,
-                      padding: '0.45rem 1rem',
-                      borderRadius: '12px',
-                      minWidth: '160px',
-                      textAlign: 'center',
-                    }}>
-                      {item.time}
-                    </div>
-                    <div style={{ marginLeft: '1.5rem', fontSize: '1.05rem', color: '#1e293b' }}>{item.title}</div>
+                  <div key={i} className="sched-item">
+                    <div className="sched-time" style={{ width: 'auto', minWidth: '175px' }}>{item.time}</div>
+                    <div className="sched-body"><div className="sched-title">{item.title}</div></div>
                   </div>
                 ))}
               </div>
 
-              <h4 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Pre-requisite for the workshop</h4>
+              <h3 className="section-title" style={{ marginBottom: '1.5rem' }}>Pre-requisite for the workshop</h3>
               <div style={{ marginBottom: '2rem' }}>
                 {prerequisites.map((item, i) => (
                   <div key={i} style={{
                     display: 'flex',
-                    alignItems: 'flex-start',
+                    alignItems: 'center',
                     gap: '12px',
-                    marginBottom: '1rem',
+                    marginBottom: '10px',
                     padding: '12px 16px',
                     background: '#fff',
-                    borderLeft: '4px solid #557AAB',
-                    borderRadius: '0 8px 8px 0',
-                    boxShadow: '0 2px 8px rgba(85, 122, 171, 0.1)',
+                    border: '1px solid #e6edf6',
+                    borderRadius: '12px',
                   }}>
                     <div style={{
                       background: 'linear-gradient(135deg, #557AAB, #1E4165)',
@@ -117,13 +85,13 @@ export default function WomenInEngineeringPage() {
                 ))}
               </div>
 
-              <h4 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Workshop Speaker</h4>
+              <h3 className="section-title" style={{ marginBottom: '1.5rem' }}>Workshop Speaker</h3>
               {/* TODO: port speaker data from speakers_data.php ($wie_speakers) when 2027 list is available */}
               <div style={{ background: '#fff', border: '1px solid #e1e1e1', borderRadius: '8px', padding: '25px', marginBottom: '30px', textAlign: 'center', color: '#64748b' }}>
                 <p>Speaker details to be announced for COMSNETS 2027.</p>
               </div>
 
-              <h4 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Presentations</h4>
+              <h3 className="section-title" style={{ marginBottom: '1.5rem' }}>Presentations</h3>
               <div style={{ background: '#fff', border: '1px solid #e1e1e1', borderRadius: '8px', padding: '25px', marginBottom: '30px' }}>
                 <h5 style={{ fontWeight: 700, color: '#2A4D75' }}>TEAM 2 &mdash; NovaMind</h5>
                 <p style={{ fontWeight: 600, color: '#1e293b' }}>
@@ -142,23 +110,13 @@ export default function WomenInEngineeringPage() {
                 </p>
               </div>
 
-              <h4 style={{ marginBottom: '1.5rem' }}>Co-Chairs</h4>
-              <div className="row">
+              <h3 className="section-title">Co-Chairs</h3>
+              <div className="member-grid">
                 {coChairs.map((c, i) => (
-                  <div key={i} className="col-12 col-md-6" style={{ marginBottom: '1.5rem' }}>
-                    <img src={c.image} alt={c.name} style={{
-                      width: '180px',
-                      height: '210px',
-                      objectFit: 'cover',
-                      borderRadius: '12px',
-                      marginBottom: '0.5rem',
-                      boxShadow: '0 2px 14px rgba(70, 115, 229, 0.1)',
-                      background: '#e0e7ef',
-                    }}/>
-                    <h5>
-                      <a href={c.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#1e293b' }}>{c.name}</a>
-                    </h5>
-                    <p>{c.affiliation}</p>
+                  <div key={i} className="member-card">
+                    <img src={c.image} alt={c.name} className="member-photo" />
+                    <div className="member-name"><a href={c.link} target="_blank" rel="noopener noreferrer">{c.name}</a></div>
+                    <p className="member-affil">{c.affiliation}</p>
                   </div>
                 ))}
               </div>

@@ -6,23 +6,23 @@ export default function TASIRWorkshopPage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-9 page-content">
+          <div className="col-md-10 col-md-offset-1 page-content">
             <div className="well well-white">
-              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>TASIR Workshop: Testbeds for Advanced Systems Implementation and Research</h1>
+              <div className="event-hero">
+                <h1>TASIR Workshop: Testbeds for Advanced Systems Implementation and Research</h1>
+                <div className="event-details">COMSNETS 2027</div>
+              </div>
 
               {/* DISABLED: source PHP calls disable_page(). Workshop details for COMSNETS 2027 will be announced soon. */}
-              <div className="tba-container" style={{ textAlign: 'center', padding: '60px 20px', background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)', borderRadius: '16px', margin: '20px 0' }}>
-                <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#1e293b', marginBottom: '15px' }}>TASIR Workshop</h2>
-                <p style={{ fontSize: '17px', color: '#64748b', maxWidth: '600px', margin: '0 auto' }}>
-                  Information about the TASIR Workshop for COMSNETS 2027 will be announced soon. Stay tuned for updates.
-                </p>
+              <div className="coming-soon">
+                <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
+                <h4>Coming Soon</h4>
+                <p>Information about the TASIR Workshop for COMSNETS 2027 will be announced soon. Stay tuned for updates.</p>
               </div>
 
               <div style={{ marginTop: '30px' }}>
-                <h3>Previous Editions</h3>
-                <p>
-                  View prior editions in the <a href="/archive" style={{ color: '#3b82f6', fontWeight: 600 }}>archive</a>.
-                </p>
+                <h3 className="section-title">Previous Editions</h3>
+                <p>View prior editions in the <a href="/archive">archive</a>.</p>
               </div>
 
               {/*

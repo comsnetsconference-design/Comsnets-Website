@@ -59,19 +59,23 @@ export default function SocialNetworkingWorkshopPage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-9 page-content">
+          <div className="col-md-10 col-md-offset-1 page-content">
             <div className="well well-white">
-              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Social Networking Workshop</h1>
+              <div className="event-hero">
+                <h1>Social Networking Workshop</h1>
+                <div className="event-details">COMSNETS 2027</div>
+              </div>
 
-              <p className="text-center" style={{ padding: '20px', fontSize: '16px', color: '#64748b', background: '#f0f9ff', borderRadius: '12px', marginBottom: '20px' }}>
-                Information for COMSNETS 2027 will be updated soon. Content below preserved from a previous edition.
-              </p>
+              <div className="notice-preserved">
+                <i className="fa fa-info-circle" aria-hidden="true"></i>
+                <p>Information for COMSNETS 2027 will be updated soon. Content below preserved from a previous edition.</p>
+              </div>
 
               <p>Social networking has changed the way people communicate. Online social networks (OSNs) support information and resource sharing, aid discovery of globally dispersed individuals, and even enable measurement of research impact. Several novel applications, diverse access interfaces, and a large economic system has developed around OSNs. Going past simple characterization of social media, the community has shown significant interest in addressing various research problems associated with the field. This workshop strives to bring together academia and industry to present developments on both research and engineering challenges associated with social networks.</p>
 
               <p>This year, we plan to have a special theme of <b>&quot;credibility analysis&quot;</b>. Social media content (or more generally, big data) has often been associated with the five V&apos;s: volume, velocity, variety, veracity and value. In recent years, there has been rising concern on the credibility, or the veracity aspect of the content spreading across social media. This is aggravated by the fact that recent publishing trends try to be the first source of information, leaving little time and resources for validating the truth or factuality of such content. Veracity directly affects the value of OSN content, while volume, velocity and variety make the problem even more challenging and necessitate the development of automated approaches for credibility assessment.</p>
 
-              <h4>Topics of Interest:</h4>
+              <h4 className="section-title">Topics of Interest:</h4>
               <p>The goal of this workshop is to facilitate cross-disciplinary discussions of relevance to social networking. Submissions should contain novel ideas and applications, and must be evaluated experimentally. We welcome contributions from researchers working on the following topics of interest, including, but not limited to:</p>
               <ul>
                 {topics.map((t, i) => <li key={i}>{t}</li>)}
@@ -92,7 +96,7 @@ export default function SocialNetworkingWorkshopPage() {
                 </div>
               </div>
 
-              <h3>Submission Guidelines</h3>
+              <h3 className="section-title">Submission Guidelines</h3>
               <ul>
                 <li>Submissions must not exceed <strong>6 pages</strong> (and not be less than 3 pages) in length including all figures, tables, and references.</li>
                 <li>Submission must be in PDF format.</li>
@@ -103,7 +107,7 @@ export default function SocialNetworkingWorkshopPage() {
               <p>At least one author of every accepted paper should attend the workshop to present the research.</p>
               <p>All deadlines are with respect to the <a href="https://www.timeanddate.com/time/zones/aoe" target="_blank" rel="noopener noreferrer">AoE (Anywhere on Earth)</a> time zone.</p>
 
-              <h3>Submission Process</h3>
+              <h3 className="section-title">Submission Process</h3>
               <ul>
                 <li>Create an account and login to <a href="https://www.edas.info/" target="_blank" rel="noopener noreferrer">EDAS</a>.</li>
                 <li>Go to the EDAS new paper submission page for the workshop.</li>
@@ -112,7 +116,7 @@ export default function SocialNetworkingWorkshopPage() {
                 <li>Papers not adhering to style and length guidelines, and not in US Letter Size PDF, will be rejected without review.</li>
               </ul>
 
-              <h4>Important Deadlines</h4>
+              <h4 className="section-title">Important Deadlines</h4>
               <table className="table table-striped table-hover">
                 <tbody>
                   <tr><td><strong>Paper Submission</strong></td><td>TBD</td></tr>
@@ -124,7 +128,7 @@ export default function SocialNetworkingWorkshopPage() {
 
               <hr />
 
-              <h4>Program Committee (Previous Edition):</h4>
+              <h4 className="section-title">Program Committee (Previous Edition):</h4>
               <ul className="text-left">
                 {programCommittee.map(([name, aff], i) => (
                   <li key={i}><p><strong>{name}, </strong>{aff}</p></li>

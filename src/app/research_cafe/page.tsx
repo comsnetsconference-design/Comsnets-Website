@@ -6,9 +6,12 @@ export default function ResearchCafePage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-9 page-content">
+          <div className="col-md-10 col-md-offset-1 page-content">
             <div className="well well-white">
-              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Research Cafe</h1>
+              <div className="event-hero">
+                <h1>Research Cafe</h1>
+                <div className="event-details">COMSNETS 2027</div>
+              </div>
 
               <p><strong>Senior Leaders from CISCO and TCS will address all student delegates.</strong></p>
               <div className="well well-sm">
@@ -20,7 +23,7 @@ export default function ResearchCafePage() {
               <div>
                 <div className="row">
                   <div className="col-md-3">
-                    <img src="/assets/images/speakers/researchcafe/jose.jpg" className="text-center" alt="Johnson Plathottam Jose" />
+                    <img src="/assets/images/speakers/researchcafe/jose.jpg" className="round-photo" alt="Johnson Plathottam Jose" />
                   </div>
                   <div className="col-md-9">
                     <h4>Johnson Plathottam Jose</h4>
@@ -39,7 +42,7 @@ export default function ResearchCafePage() {
 
                 <div className="row">
                   <div className="col-md-3">
-                    <img src="/assets/images/speakers/researchcafe/srikanth.jpg" className="text-center" alt="Srikanth Narasimhan" />
+                    <img src="/assets/images/speakers/researchcafe/srikanth.jpg" className="round-photo" alt="Srikanth Narasimhan" />
                   </div>
                   <div className="col-md-9">
                     <h4>Srikanth Narasimhan</h4>
@@ -56,7 +59,7 @@ export default function ResearchCafePage() {
 
                 <div className="row">
                   <div className="col-md-3">
-                    <img src="/assets/images/speakers/researchcafe/amit.jpg" className="text-center" alt="Amit Saha" />
+                    <img src="/assets/images/speakers/researchcafe/amit.jpg" className="round-photo" alt="Amit Saha" />
                   </div>
                   <div className="col-md-9">
                     <h4>Amit Saha</h4>
@@ -74,7 +77,7 @@ export default function ResearchCafePage() {
               <div>
                 <div className="row">
                   <div className="col-md-3">
-                    <img src="/assets/images/speakers/workshops/jeffrey_tew.jpg" className="text-center" alt="Jeffrey Tew" />
+                    <img src="/assets/images/speakers/workshops/jeffrey_tew.jpg" className="round-photo" alt="Jeffrey Tew" />
                   </div>
                   <div className="col-md-9">
                     <h4>Jeffrey Tew</h4>

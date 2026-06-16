@@ -10,12 +10,17 @@ export default function LastmilesWorkshopPage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-9 page-content">
+          <div className="col-md-10 col-md-offset-1 page-content">
             <div className="well well-white">
-              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Workshop on &quot;Last-mile&quot; Challenges and Standardization Opportunities in Smart Infrastructure</h1>
-              <p className="text-center" style={{ padding: '40px 20px', fontSize: '18px', color: '#64748b' }}>
-                The LastMileS Workshop at COMSNETS 2027 will be announced soon. Stay tuned for updates.
-              </p>
+              <div className="event-hero">
+                <h1>Workshop on &quot;Last-mile&quot; Challenges and Standardization Opportunities in Smart Infrastructure</h1>
+                <div className="event-details">COMSNETS 2027</div>
+              </div>
+              <div className="coming-soon">
+                <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
+                <h4>Coming Soon</h4>
+                <p>The LastMileS Workshop at COMSNETS 2027 will be announced soon. Stay tuned for updates.</p>
+              </div>
               {/* DISABLED: Original 2022 LastMileS Workshop content
 
                 Held 4 January 2022 at Sigma Hall 3. Sections in source PHP:

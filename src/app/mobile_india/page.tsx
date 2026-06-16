@@ -90,9 +90,12 @@ export default function MobileIndiaPage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-9 page-content">
+          <div className="col-md-10 col-md-offset-1 page-content">
             <div className="well well-white">
-              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}><strong style={{ color: 'red' }}>Mobile India 2018</strong></h1>
+              <div className="event-hero">
+                <h1>Mobile India 2018</h1>
+                <div className="event-details">COMSNETS 2027</div>
+              </div>
 
               <div className="well well-sm">
                 <h4><strong>Date:</strong> January 5, 2018 (Friday)</h4>
