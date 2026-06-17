@@ -74,54 +74,64 @@ export default function CPSPanelPage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-10 col-md-offset-1 page-content">
+          <div className="col-md-9 page-content">
             <div className="well well-white">
-              <div className="event-hero">
-                <h1>The Future of Intelligent Networking: Mobile Computing and Cyber-Physical Systems</h1>
-                <div className="event-details">COMSNETS 2027</div>
-              </div>
+              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>
+                The Future of Intelligent Networking: Mobile Computing and Cyber-Physical Systems
+              </h1>
               {/* TODO: refresh panelists / venue / abstract for 2027. 2024 archive content shown below. */}
 
               <p className="text-justify">
                 This panel discussion explores the profound impact of new networking technologies on mobile computing, IoT, automation, and cyber-physical systems (CPS). While 6G remains a significant contributor, our conversation extends to emerging networking technologies that are redefining the landscape. We delve into the enhanced role of intelligent networking technologies in advancing mobile computing and automation. These technologies are at the heart of the ongoing evolution in CPS, a field characterized by the seamless integration of digital and physical elements. Our exploration highlights how these cutting-edge networking solutions are optimizing efficiency and elevating the intelligence of interconnected systems and processes. The discussion also encompasses the multi-faceted nature of computing across cloud, edge, and on-premise infrastructures. We aim to dissect the innovative aspects and challenges of this tripartite model, underlining the influence of intelligent networking technologies in reshaping distributed computing.
               </p>
 
-              <div style={{ textAlign: 'center', margin: '8px 0 18px' }}>
-                <img src="/assets/images/posters/cps poster.jpg" alt="Poster Image" style={{ maxWidth: '560px', width: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 8px 24px rgba(30,65,101,.15)' }}/>
+              <br/>
+
+              <div style={{ textAlign: 'center', padding: '20px' }}>
+                <img src="/assets/images/posters/cps poster.jpg" alt="Poster Image" style={{ maxWidth: '100%', height: 'auto' }}/>
               </div>
 
-              <p style={{ textAlign: 'center', fontWeight: 600, color: '#1E4165', margin: '0 0 22px' }}>Venue: SIGMA Hall</p>
+              <h4 style={{ padding: '8px' }}>Venue: SIGMA Hall</h4>
 
-              <h3 className="section-title text-center">Panelists</h3>
+              <br/>
+              <hr/>
+
+              <h3 className="text-center">Panelists</h3>
 
               <hr/>
 
               {panelists.map((p, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
                   <div style={{ padding: '20px' }}>
-                    <img src={p.image} alt={p.name} className="round-photo" />
+                    <img src={p.image} alt={p.name} style={{ width: '150px', height: '200px', objectFit: 'cover' }}/>
                   </div>
                   <div style={{ textAlign: 'left', flex: '1 1 300px' }}>
                     <h4>{p.name}</h4>
                     <p>{p.affiliation}</p>
                     <a href={p.homepage} target="_blank" rel="noopener noreferrer">Visit Homepage</a>
-                    <details className="bio-toggle" style={{ marginTop: '10px' }}>
-                      <summary>Bio</summary>
-                      <div><p>{p.bio}</p></div>
-                    </details>
+                    <p style={{ marginTop: '10px' }}>{p.bio}</p>
                   </div>
                 </div>
               ))}
 
-              <h3 className="section-title text-center">Moderator</h3>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
-                <div style={{ padding: '20px' }}>
-                  <img src={moderator.image} alt={moderator.name} className="round-photo" />
+              <hr/>
+              <br/><br/>
+
+              <div className="panel panel-default">
+                <div className="panel-heading">
+                  <h4>Moderator</h4>
                 </div>
-                <div style={{ textAlign: 'left', flex: '1 1 300px' }}>
-                  <h4>{moderator.name}</h4>
-                  <p>{moderator.affiliation}</p>
-                  <a href={moderator.homepage} target="_blank" rel="noopener noreferrer">Visit Homepage</a>
+                <div style={{ paddingLeft: '0.9%' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+                    <div style={{ padding: '20px' }}>
+                      <img src={moderator.image} alt={moderator.name} style={{ width: '150px', height: '200px', objectFit: 'cover' }}/>
+                    </div>
+                    <div style={{ textAlign: 'left' }}>
+                      <h4>{moderator.name}</h4>
+                      <p>{moderator.affiliation}</p>
+                      <a href={moderator.homepage} target="_blank" rel="noopener noreferrer">Visit Homepage</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

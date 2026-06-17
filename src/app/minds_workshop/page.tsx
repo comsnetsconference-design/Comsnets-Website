@@ -93,12 +93,12 @@ export default function MindsWorkshopPage() {
                         <h3 className="section-title">Workshop Co-Chairs</h3>
                         <div className="member-grid">
                             <div className="member-card">
-                                <img src="/assets/images/placeholder.jpg" alt="Marios Avgeris" className="member-photo" />
+                                <img src="/assets/images/Committee_2025/minds_workshop/Marios_Avgeris.jpg" alt="Marios Avgeris" className="member-photo" />
                                 <div className="member-name"><a href="https://www.linkedin.com/in/mavgeris/" target="_blank" rel="noopener noreferrer">Marios Avgeris</a></div>
                                 <p className="member-affil">University of Amsterdam<br />Netherlands</p>
                             </div>
                             <div className="member-card">
-                                <img src="/assets/images/placeholder.jpg" alt="Shashikant Ilager" className="member-photo" />
+                                <img src="/assets/images/Committee_2027/Shashikant.jpg" alt="Shashikant Ilager" className="member-photo" />
                                 <div className="member-name"><a href="https://shashikantilager.com/" target="_blank" rel="noopener noreferrer">Shashikant Ilager</a></div>
                                 <p className="member-affil">University of Amsterdam<br />Netherlands</p>
                             </div>

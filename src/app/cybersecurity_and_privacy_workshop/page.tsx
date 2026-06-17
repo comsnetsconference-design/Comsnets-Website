@@ -83,17 +83,17 @@ export default function CybersecurityAndPrivacyWorkshopPage() {
                         <h3 className="section-title">Workshop Co-Chairs</h3>
                         <div className="member-grid">
                             <div className="member-card">
-                                <img src="/assets/images/placeholder.jpg" alt="Shantanu Pal" className="member-photo" />
+                                <img src="/assets/images/Shantanu Pal_Photo - Shantanu Pal(1).png" alt="Shantanu Pal" className="member-photo" />
                                 <div className="member-name"><a href="https://www.deakin.edu.au/about-deakin/people/shantanu-pal" target="_blank" rel="noopener noreferrer">Shantanu Pal</a></div>
                                 <p className="member-affil">Deakin University<br />Australia</p>
                             </div>
                             <div className="member-card">
-                                <img src="/assets/images/placeholder.jpg" alt="Robin Doss" className="member-photo" />
+                                <img src="https://firebasestorage.googleapis.com/v0/b/comsnets-website.firebasestorage.app/o/committee%2F1779554185343-Robin_Doss.webp?alt=media&token=33fe3be5-3500-47de-8136-07590021146e" alt="Robin Doss" className="member-photo" />
                                 <div className="member-name"><a href="https://www.deakin.edu.au/about-deakin/people/robin-doss" target="_blank" rel="noopener noreferrer">Robin Doss</a></div>
                                 <p className="member-affil">Deakin University<br />Australia</p>
                             </div>
                             <div className="member-card">
-                                <img src="/assets/images/placeholder.jpg" alt="Sandeep Shukla" className="member-photo" />
+                                <img src="https://firebasestorage.googleapis.com/v0/b/comsnets-website.firebasestorage.app/o/committee%2F1779554223267-Sandeep_Shukla.jpg?alt=media&token=46bc1c7e-f71d-452b-8ad0-05eaf2cdbba3" alt="Sandeep Shukla" className="member-photo" />
                                 <div className="member-name"><a href="https://sites.google.com/view/skshukla/" target="_blank" rel="noopener noreferrer">Sandeep Shukla</a></div>
                                 <p className="member-affil">IIIT Hyderabad<br />India</p>
                             </div>

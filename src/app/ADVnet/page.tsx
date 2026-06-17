@@ -114,13 +114,18 @@ export default function ADVnetPage() {
           </div>
 
           <div className="event-section">
-            <h3 className="section-title">ADVnet Workshop Co-Chair</h3>
+            <h3 className="section-title">ADVnet Workshop Co-Chairs</h3>
             <div className="member-grid">
               <div className="member-card">
                 <img src="https://civil.iitr.ac.in/IMG/Sanhita%20Das1.jpg" alt="Sanhita Das" className="member-photo" />
                 <div className="member-name"><a href="https://civil.iitr.ac.in/CE?Uid=sanhita.das" target="_blank" rel="noopener noreferrer">Sanhita Das</a></div>
                 <p className="member-affil">Indian Institute of Technology Roorkee<br />India</p>
                 <p className="member-affil">Email: <a href="mailto:sanhita.das@ce.iitr.ac.in">sanhita.das@ce.iitr.ac.in</a></p>
+              </div>
+              <div className="member-card">
+                <img src="https://www.iitg.ac.in/storage/faculty/3645Nipjyoti-Bharadwaj.jpg" alt="Nipjyoti Bharadwaj" className="member-photo" />
+                <div className="member-name"><a href="https://www.iitg.ac.in/civil/home_faculty_profile.php?slno=RzBQeUZ5UE9ROG9id0dpdzJSK1loQT09" target="_blank" rel="noopener noreferrer">Nipjyoti Bharadwaj</a></div>
+                <p className="member-affil">Indian Institute of Technology Guwahati<br />India</p>
               </div>
             </div>
           </div>

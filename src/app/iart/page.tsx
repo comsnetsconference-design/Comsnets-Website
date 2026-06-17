@@ -22,8 +22,10 @@ export default function IartPage() {
           <div className="event-section">
             <h3 className="section-title">Important Dates</h3>
             <div className="dates-timeline">
-              <div className="date-step"><div className="dot">1</div><div className="lab">Event Date</div><div className="val">January 2027</div></div>
-              <div className="date-step"><div className="dot">2</div><div className="lab">Call for Papers / Contributions</div><div className="val">To be announced</div></div>
+              <div className="date-step"><div className="dot">1</div><div className="lab">Paper Submission deadline</div><div className="val">To be announced</div></div>
+              <div className="date-step"><div className="dot">2</div><div className="lab">Notification of Acceptance</div><div className="val">To be announced</div></div>
+              <div className="date-step"><div className="dot">3</div><div className="lab">Camera-ready Submission</div><div className="val">To be announced</div></div>
+              <div className="date-step is-event"><div className="dot"><i className="fa fa-star" aria-hidden="true"></i></div><div className="lab">Workshop Date</div><div className="val">January 2027</div></div>
             </div>
           </div>
 

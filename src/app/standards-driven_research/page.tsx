@@ -121,17 +121,17 @@ export default function StandardsDrivenResearchPage() {
                         <h3 className="section-title">Workshop Co-Chairs</h3>
                         <div className="member-grid">
                             <div className="member-card">
-                                <img src="/assets/images/placeholder.jpg" alt="Pamela Kumar" className="member-photo" />
+                                <img src="/assets/images/Committee_2025/WorkshopCoChair/Pamela.jpg" alt="Pamela Kumar" className="member-photo" />
                                 <div className="member-name"><a href="https://www.linkedin.com/in/pamela-kumar-8b51124/?originalSubdomain=in" target="_blank" rel="noopener noreferrer">Pamela Kumar</a></div>
                                 <p className="member-affil">FSID-IISc</p>
                             </div>
                             <div className="member-card">
-                                <img src="/assets/images/placeholder.jpg" alt="Dr. Ashutosh Dutta" className="member-photo" />
+                                <img src="/assets/images/Committee_2027/Ashutosh-Dutta-Portrait-300x300.webp" alt="Dr. Ashutosh Dutta" className="member-photo" />
                                 <div className="member-name">Dr. Ashutosh Dutta</div>
                                 <p className="member-affil">Johns Hopkins University APL<br />USA</p>
                             </div>
                             <div className="member-card">
-                                <img src="/assets/images/placeholder.jpg" alt="Dilip Krishnaswamy" className="member-photo" />
+                                <img src="/assets/images/Committee_2027/DilipKrishnaswamy.webp" alt="Dilip Krishnaswamy" className="member-photo" />
                                 <div className="member-name">Dilip Krishnaswamy</div>
                                 <p className="member-affil">C-DOT<br />India</p>
                             </div>

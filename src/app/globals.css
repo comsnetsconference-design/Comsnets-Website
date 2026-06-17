@@ -1269,7 +1269,7 @@ button.navbar-toggle .icon-bar,
 .sched { margin: 6px 0 4px; }
 .sched-session { font-family: var(--font-outfit), system-ui, sans-serif; font-weight: 800; color: #1E4165; font-size: .98rem; letter-spacing: .3px; margin: 24px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #dbe6f3; }
 .sched-session:first-child { margin-top: 4px; }
-.sched-item { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid #e6edf6; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
+.sched-item { display: flex; gap: 16px; align-items: center; background: #fff; border: 1px solid #e6edf6; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
 .sched-item.is-break { background: #f5f8fc; border-style: dashed; }
 .sched-time { flex: none; width: 132px; text-align: center; font-family: var(--font-outfit), system-ui, sans-serif; font-weight: 700; font-size: 13px; color: #1E4165; background: #eaf1fa; border: 1px solid #dbe6f3; border-radius: 8px; padding: 9px 6px; white-space: nowrap; }
 .sched-body { flex: 1; min-width: 0; }

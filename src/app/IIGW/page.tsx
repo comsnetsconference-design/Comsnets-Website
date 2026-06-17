@@ -1,32 +1,5 @@
 export const metadata = { title: 'Internet Intelligence and Governance Workshop (IIGW) | COMSNETS 2027' };
 
-interface ScheduleEvent {
-  time: string;
-  title: string;
-  subtext?: string;
-  section?: string;
-}
-
-const iigwSchedule: ScheduleEvent[] = [
-  { time: '09:30 – 09:40', title: 'Welcome by Chairs' },
-  { time: '09:40 – 10:05', title: 'Revisiting Queue Delay Estimation Techniques in PIE and FQ-PIE: An Empirical Evaluation', subtext: 'Arun Kumar R (NITK Surathkal), Mohit P Tahiliani (NITK Surathkal)', section: 'Session 1: Presentation : 25 mins (including Q&A)' },
-  { time: '10:05 – 10:30', title: 'AI-Powered Intelligent System through context aware log scrutiny for Anomaly detection', subtext: 'Shilpi Gupta (Microsoft, India), George Asirvatharaj (Microsoft, India), Ravi Teja Talluri (Microsoft, India)' },
-  { time: '10:30 – 11:00', title: 'Trends and Technologies Shaping the Future Mobile Networks', subtext: 'Satish K. (Head of Nokia Standards Division, APAC [Standards Team Leader])' },
-  { time: '11:00 – 11:30', title: 'Tea Break' },
-  { time: '11:30 – 12:10', title: 'Governance of Digital Platforms', subtext: 'Prof. D Manjunath, IIT Bombay', section: 'Session 2' },
-  { time: '12:10 – 12:35', title: 'Cost-optimized Multi-Technology Gateway Placement for Heterogeneous IoT Networks', subtext: 'Vijeth J Kotagi, Vinay M Talageri, Utkarsh Raj, Tamal Das (IIT Dharwad, India)' },
-  { time: '12:35 – 13:00', title: 'TagFlow: A Hybrid Control and P4 Data Plane for Scalable IoT Device Validation and Connectivity', subtext: 'Prashanth Pvn, Rohan Vachhani, Miraj Rambhiya, Krish Kotak (VNIT Nagpur)' },
-  { time: '13:00 – 14:00', title: 'Lunch Break' },
-  { time: '14:00 – 14:40', title: 'Trustworthy Internet Intelligence: Security, Privacy, and Ethics by Design', subtext: 'Dr. S D Sudarsan, Executive Director, C-DAC Bangalore', section: 'Session 3' },
-  { time: '14:40 – 15:05', title: 'Smarter Grids Through Clearer Vision: AI for Predictive Fault Detection', subtext: 'Gurnoor S Dang, Majid Rodgar, Michael Snyder (Stanford University, USA)' },
-  { time: '15:05 – 15:30', title: 'Promoting Equitable Access to Glaucoma Screening Using Open-Source Multimodal Imaging Tools', subtext: 'Gurnoor S Dang, Gloria Wu, Ivan Chim, Swara Tewari, Priyal Badala, Brian Hoang' },
-  { time: '15:30 – 16:00', title: 'Tea Break' },
-  { time: '16:00 – 16:40', title: 'AI Infrastructure and the Evolution of Software Defined Networking (SDN)', subtext: 'Mr. Sreenivas Voruganti, Google', section: 'Session 4' },
-  { time: '16:40 – 17:05', title: 'Environment-Aware Real-Time Intelligent Central Unit-User Plane Migration in O-RAN', subtext: 'Naren Nandakumar et al. (UT Dallas, USA), Koteswararao Kondepu (IIT Dharwad)' },
-  { time: '17:05 – 17:30', title: 'Context-Aware Secure Prompt Engineering for Large Language Models Using ERP Metadata and Role-Based Data Constraints', subtext: 'Sagar Gupta (ServiceNow India), Chitta Ranjan Sahoo (ServiceNow, India)' },
-  { time: '17:30 – 17:45', title: 'Closing & Best Paper Award announcement' },
-];
-
 const topics = [
   {
     heading: 'Internet',
@@ -81,30 +54,6 @@ export default function IIGWPage() {
             <div className="event-details">COMSNETS 2027</div>
           </div>
 
-          <div className="event-section">
-            <h3 className="section-title">Detailed Schedule</h3>
-            <div className="sched">
-              {(() => {
-                let currentSection = '';
-                return iigwSchedule.map((ev, idx) => {
-                  const showSection = ev.section && ev.section !== currentSection;
-                  if (showSection) currentSection = ev.section!;
-                  return (
-                    <div key={idx}>
-                      {showSection && <div className="sched-session">{ev.section}</div>}
-                      <div className="sched-item">
-                        <div className="sched-time">{ev.time}</div>
-                        <div className="sched-body">
-                          <div className="sched-title">{ev.title}</div>
-                          {ev.subtext && <div className="sched-sub">{ev.subtext}</div>}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                });
-              })()}
-            </div>
-          </div>
 
           <div className="event-section">
             <h3 className="section-title">Workshop Overview</h3>
@@ -169,22 +118,22 @@ export default function IIGWPage() {
               <div className="date-step">
                 <div className="dot">1</div>
                 <div className="lab">Paper Submission deadline</div>
-                <div className="val"><s>15<sup>th</sup> October 2025 (AoE)</s><s>30<sup>th</sup> October 2025 (AoE)</s><span className="now">12<sup>th</sup> November 2025 (AoE)</span></div>
+                <div className="val">To be announced</div>
               </div>
               <div className="date-step">
                 <div className="dot">2</div>
                 <div className="lab">Notification of Acceptance</div>
-                <div className="val"><s>15<sup>th</sup> November 2025</s><s>20<sup>th</sup> November 2025</s><span className="now">26<sup>th</sup> November 2025</span></div>
+                <div className="val">To be announced</div>
               </div>
               <div className="date-step">
                 <div className="dot">3</div>
                 <div className="lab">Camera-ready Submission</div>
-                <div className="val"><s>30<sup>th</sup> November 2025</s><span className="now">5<sup>th</sup> December 2025</span></div>
+                <div className="val">To be announced</div>
               </div>
               <div className="date-step is-event">
                 <div className="dot"><i className="fa fa-star" aria-hidden="true"></i></div>
                 <div className="lab">Workshop Date</div>
-                <div className="val">6<sup>th</sup> January 2026</div>
+                <div className="val">January 2027</div>
               </div>
             </div>
           </div>
@@ -203,11 +152,6 @@ export default function IIGWPage() {
                 <img src="/assets/images/Committee_2024/Anand.jpg" alt="Anand Baswade" className="member-photo" />
                 <div className="member-name"><a href="https://www.iitbhilai.ac.in/index.php?pid=anand" target="_blank" rel="noopener noreferrer">Anand Baswade</a></div>
                 <p className="member-affil">Indian Institute of Technology<br />Bhilai, India</p>
-              </div>
-              <div className="member-card">
-                <img src="https://ieeexplore.ieee.org/mediastore/IEEE/content/freeimages/6287639/10380310/10744020/majum-3491500-small.gif" alt="Chitradeep Majumdar" className="member-photo" />
-                <div className="member-name"><a href="https://in.linkedin.com/in/chitradeep-majumdar-27689113" target="_blank" rel="noopener noreferrer">Chitradeep Majumdar</a></div>
-                <p className="member-affil">Nokia Standards Division<br />Bangalore, India</p>
               </div>
             </div>
           </div>

@@ -6,16 +6,11 @@ export default function BlockchainWorkshopPage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-10 col-md-offset-1 page-content">
+          <div className="col-md-9 page-content">
             <div className="well well-white">
-              <div className="event-hero">
-                <h1>Cyber Security &amp; Blockchain Workshop</h1>
-                <div className="event-details">COMSNETS 2027</div>
-              </div>
-              <div className="coming-soon">
-                <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
-                <h4>Coming Soon</h4>
-                <p>Details for the COMSNETS 2027 Cyber Security &amp; Blockchain Workshop will be announced shortly.</p>
+              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Cyber Security &amp; Blockchain Workshop</h1>
+              <div className="alert alert-info">
+                <strong>Coming Soon.</strong> Details for the COMSNETS 2027 Cyber Security &amp; Blockchain Workshop will be announced shortly.
               </div>
               {/* DISABLED: PHP source called disable_page(). Original 2021 content preserved below as a JSX comment for reference when 2027 details land.
 
