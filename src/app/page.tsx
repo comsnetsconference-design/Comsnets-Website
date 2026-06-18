@@ -7,6 +7,7 @@ import Sidebar from '@/components/Sidebar';
 import CTAStrip from '@/components/CTAStrip';
 import CFPDownload from '@/components/CFPDownload';
 import KeynoteSpeakers from '@/components/KeynoteSpeakers';
+import InvitedSpeakers from '@/components/InvitedSpeakers';
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
             <CFPDownload />
             <Memories />
             <KeynoteSpeakers />
+            <InvitedSpeakers />
             <AboutSection />
             <PhotosGrid />
             <VenueCard />
