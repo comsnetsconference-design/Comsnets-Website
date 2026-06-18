@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { db } from '../../lib/firebase';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
-import '../keynote_speakers/speaker-styles.css';
+import './speaker-styles.css';
 
 export default function InvitedSpeakers() {
   const [speakers, setSpeakers] = useState<any[]>([]);
@@ -28,7 +28,7 @@ export default function InvitedSpeakers() {
         const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setSpeakers(data);
       } catch (err) {
-        console.error("Error fetching invited speakers:", err);
+        console.error("Error fetching Invited speakers:", err);
       } finally {
         setLoading(false);
       }
@@ -48,7 +48,7 @@ export default function InvitedSpeakers() {
               <h1 className="page-title" id="head" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Invited Speakers</h1>
 
               {loading ? (
-                <div style={{ textAlign: 'center', padding: '40px' }}>Loading invited speakers...</div>
+                <div style={{ textAlign: 'center', padding: '40px' }}>Loading keynote speakers...</div>
               ) : speakers.length > 0 ? (
                 speakers.map(speaker => (
                   <div className="speaker-card" key={speaker.id}>
@@ -59,7 +59,7 @@ export default function InvitedSpeakers() {
                             <img src={speaker.image} alt={speaker.name} />
                           ) : (
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#ccc' }}>
-                              <i className="fa fa-users fa-4x"></i>
+                              <i className="fa fa-user fa-5x"></i>
                             </div>
                           )}
                         </div>
@@ -90,7 +90,7 @@ export default function InvitedSpeakers() {
                 ))
               ) : (
                 <div className="tba-container">
-                  <div className="tba-icon"><i className="fa fa-users"></i></div>
+                  <div className="tba-icon"><i className="fa fa-microphone-slash"></i></div>
                   <h2 className="tba-title">Invited Speakers</h2>
                   <p className="tba-message">
                     Our invited speakers for COMSNETS 2027 will be announced soon.<br />
@@ -102,7 +102,7 @@ export default function InvitedSpeakers() {
               <div className="prev-speakers-box">
                 <h3>Previous Invited Speakers</h3>
                 <p>
-                  View our lineup from <Link href="/archive/2026/invited_speakers.php">COMSNETS 2026</Link> and previous years in the <Link href="/archive">archive</Link>.
+                  View our lineup of distinguished speakers from <Link href="/archive/2026/invited_speakers.php">COMSNETS 2026</Link> and previous years in the <Link href="/archive">archive</Link>.
                 </p>
               </div>
             </div>

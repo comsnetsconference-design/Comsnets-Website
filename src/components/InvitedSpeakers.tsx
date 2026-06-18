@@ -13,7 +13,7 @@ interface Speaker {
   location?: string;
 }
 
-export default function KeynoteSpeakers() {
+export default function InvitedSpeakers() {
   const [speakers, setSpeakers] = useState<Speaker[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,10 +25,10 @@ export default function KeynoteSpeakers() {
       }
 
       try {
-        // Fetching where type is 'keynote'
+        // Fetching where type is 'invited'
         const q = query(
           collection(db, 'speakers'), 
-          where('type', '==', 'keynote'), 
+          where('type', '==', 'invited'), 
           where('year', '==', 2027),
           orderBy('order', 'asc')
         );
@@ -36,7 +36,7 @@ export default function KeynoteSpeakers() {
         const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Speaker));
         setSpeakers(data);
       } catch (err) {
-        console.error("Error fetching keynote speakers:", err);
+        console.error("Error fetching invited speakers:", err);
       } finally {
         setLoading(false);
       }
@@ -54,7 +54,7 @@ export default function KeynoteSpeakers() {
       border: '1px solid #dce3ed'
     }}>
         <p className="h-eyebrow">Our</p>
-        <h2 className="h-title" style={{ fontSize: 'clamp(24px, 2.8vw, 34px)' }}>Keynote Speakers</h2>
+        <h2 className="h-title" style={{ fontSize: 'clamp(24px, 2.8vw, 34px)' }}>Invited Speakers</h2>
         <hr style={{
           width: '80px',
           border: 'none',
@@ -65,7 +65,7 @@ export default function KeynoteSpeakers() {
 
         {loading ? (
             <div style={{ marginTop: '32px', color: 'var(--col-muted, #52657a)' }}>
-                Loading keynote speakers...
+                Loading invited speakers...
             </div>
         ) : speakers.length > 0 ? (
             <div style={{
@@ -112,7 +112,7 @@ export default function KeynoteSpeakers() {
         ) : (
             <div style={{ marginTop: '32px', color: 'var(--col-muted, #52657a)' }}>
                 <p style={{ margin: 0 }}>
-                    Our Keynote speakers for COMSNETS 2027 will be announced soon.<br />
+                    Our Invited speakers for COMSNETS 2027 will be announced soon.<br />
                     Stay tuned for updates.
                 </p>
             </div>
