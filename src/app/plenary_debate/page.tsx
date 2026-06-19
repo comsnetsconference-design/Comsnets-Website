@@ -13,6 +13,16 @@ export default function PlenaryDebatePage() {
                 <h2 style={{ color: '#2c3e50', fontWeight: 700, marginTop: 0, marginBottom: '10px' }}>From Algorithms to Agents: What Should the Next Great Computer Scientists Build?</h2>
                 <div style={{ color: '#337ab7', fontSize: '18px', fontWeight: 500, marginBottom: '20px' }}>Foundations, Frontiers, and the Networks That Will Carry the Agent Era</div>
 
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#52657a', fontSize: '16px', fontWeight: 500, marginBottom: '24px' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>6th Jan, 2027 (1st day of main conference)</span>
+                </div>
+
                 <div style={{ background: '#f8f9fa', borderLeft: '4px solid #337ab7', padding: '15px', margin: '20px 0', fontStyle: 'italic', color: '#555' }}>
                   <strong>The Motion:</strong> This house believes that, in the age of AI agents, the next generation of computer scientists must tear down more than they preserve.
                 </div>
