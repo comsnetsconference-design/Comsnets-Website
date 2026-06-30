@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageGuard from "@/components/PageGuard";
+import { getNavbarConfig, DEFAULT_NAVBAR } from "@/lib/navbarService";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -13,11 +14,14 @@ export const metadata: Metadata = {
   description: "The 19th International Conference on COMmunication Systems & NETworkS. January 5 - 9, 2027 in Bangalore, India.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navbarConfig = await getNavbarConfig();
+  const initialNavItems = navbarConfig && navbarConfig.length > 0 ? navbarConfig : DEFAULT_NAVBAR;
+
   return (
     <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
@@ -26,7 +30,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="/assets/css/main.css" />
       </head>
       <body className={`${inter.variable} ${outfit.variable} min-h-screen flex flex-col`}>
-        <Navbar />
+        <Navbar initialNavItems={initialNavItems} />
         <main className="flex-grow legacy-main hp">
           <PageGuard>
             {children}

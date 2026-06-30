@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import OCSection from '@/components/OCSection';
 import { db } from '../../lib/firebase';
@@ -8,36 +6,26 @@ import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import conferenceData from '../../../data/conference.json';
 import './oc-styles.css';
 
-export default function OrganizingCommittee() {
-  const [sections, setSections] = useState<any[]>(conferenceData.committeeSections);
-  const [loading, setLoading] = useState(!!db);
-  const [error, setError] = useState<string | null>(null);
+export const revalidate = 300; // Cache for 5 minutes
 
-  useEffect(() => {
-    async function fetchOCData() {
-      if (!db) {
-        setLoading(false);
-        return;
-      }
+export default async function OrganizingCommittee() {
+  let sections: any[] = [...conferenceData.committeeSections];
+  let error: string | null = null;
+
+  if (db) {
+    try {
+      const q = query(collection(db, 'organizing_committee'), orderBy('order', 'asc'));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map(doc => doc.data());
       
-      try {
-        const q = query(collection(db, 'organizing_committee'), orderBy('order', 'asc'));
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map(doc => doc.data());
-        
-        if (data.length > 0) {
-          setSections(data);
-        }
-      } catch (err: any) {
-        console.error("Error fetching OC data from Firestore:", err);
-        setError("Error connecting to Firestore. Showing local data instead.");
-      } finally {
-        setLoading(false);
+      if (data.length > 0) {
+        sections = data;
       }
+    } catch (err: any) {
+      console.error("Error fetching OC data from Firestore:", err);
+      error = "Error connecting to Firestore. Showing local data instead.";
     }
-
-    fetchOCData();
-  }, []);
+  }
 
   return (
     <>
@@ -52,10 +40,9 @@ export default function OrganizingCommittee() {
               <h1 itemProp="name" className="page-title" id="head" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Organizing Committee</h1>
               
               <div className="oc-page">
-                {loading && <p>Loading committee details from database...</p>}
                 {error && <p className="text-warning">{error}</p>}
                 
-                {!loading && sections.map((section: any, idx: number) => (
+                {sections.map((section: any, idx: number) => (
                   <OCSection key={idx} section={section} />
                 ))}
 

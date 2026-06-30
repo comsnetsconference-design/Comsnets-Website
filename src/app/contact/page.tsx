@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { db } from '../../lib/firebase';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import conferenceData from '../../../data/conference.json';
@@ -11,67 +9,53 @@ interface ContactMember {
   email?: string;
 }
 
-export default function ContactPage() {
-  const [webSupportMembers, setWebSupportMembers] = useState<ContactMember[]>([]);
-  const [registrationMembers, setRegistrationMembers] = useState<ContactMember[]>([]);
-  const [loading, setLoading] = useState(true);
+export const revalidate = 300; // Cache for 5 minutes
 
-  useEffect(() => {
-    async function fetchContactData() {
-      // Try Firestore first
-      if (db) {
-        try {
-          const q = query(collection(db, 'organizing_committee'), orderBy('order', 'asc'));
-          const querySnapshot = await getDocs(q);
-          const sections = querySnapshot.docs.map(doc => doc.data());
+export default async function ContactPage() {
+  let webSupportMembers: ContactMember[] = [];
+  let registrationMembers: ContactMember[] = [];
+  let fetchedFromFirestore = false;
 
-          const webSection = sections.find((s: any) => s.title === 'Web Co-Chairs');
-          const regSection = sections.find((s: any) => s.title === 'Registration Co-Chairs');
+  // Try Firestore first
+  if (db) {
+    try {
+      const q = query(collection(db, 'organizing_committee'), orderBy('order', 'asc'));
+      const querySnapshot = await getDocs(q);
+      const sections = querySnapshot.docs.map(doc => doc.data());
 
-          if (webSection?.members) {
-            setWebSupportMembers(
-              webSection.members
-                .filter((m: any) => m.name)
-                .map((m: any) => ({ name: m.name, email: m.email || '' }))
-            );
-          }
-
-          if (regSection?.members) {
-            setRegistrationMembers(
-              regSection.members
-                .filter((m: any) => m.name)
-                .map((m: any) => ({ name: m.name, email: m.email || '' }))
-            );
-          }
-
-          setLoading(false);
-          return;
-        } catch (err) {
-          console.error("Error fetching contact data from Firestore:", err);
-        }
-      }
-
-      // Fallback to local JSON data
-      const webSection = conferenceData.committeeSections.find(s => s.title === 'Web Co-Chairs');
-      const regSection = conferenceData.committeeSections.find(s => s.title === 'Registration Co-Chairs');
+      const webSection = sections.find((s: any) => s.title === 'Web Co-Chairs');
+      const regSection = sections.find((s: any) => s.title === 'Registration Co-Chairs');
 
       if (webSection?.members) {
-        setWebSupportMembers(
-          webSection.members.map(m => ({ name: m.name, email: (m as any).email || '' }))
-        );
+        webSupportMembers = webSection.members
+          .filter((m: any) => m.name)
+          .map((m: any) => ({ name: m.name, email: m.email || '' }));
       }
 
       if (regSection?.members) {
-        setRegistrationMembers(
-          regSection.members.map(m => ({ name: m.name, email: (m as any).email || '' }))
-        );
+        registrationMembers = regSection.members
+          .filter((m: any) => m.name)
+          .map((m: any) => ({ name: m.name, email: m.email || '' }));
       }
+      fetchedFromFirestore = true;
+    } catch (err) {
+      console.error("Error fetching contact data from Firestore:", err);
+    }
+  }
 
-      setLoading(false);
+  // Fallback to local JSON data
+  if (!fetchedFromFirestore) {
+    const webSection = conferenceData.committeeSections.find(s => s.title === 'Web Co-Chairs');
+    const regSection = conferenceData.committeeSections.find(s => s.title === 'Registration Co-Chairs');
+
+    if (webSection?.members) {
+      webSupportMembers = webSection.members.map(m => ({ name: m.name, email: (m as any).email || '' }));
     }
 
-    fetchContactData();
-  }, []);
+    if (regSection?.members) {
+      registrationMembers = regSection.members.map(m => ({ name: m.name, email: (m as any).email || '' }));
+    }
+  }
 
   return (
     <>
@@ -88,9 +72,6 @@ export default function ContactPage() {
                 <h2 className="section-title">Contact Us</h2>
                 <p className="section-subtitle">For any queries regarding COMSNETS, please reach out to the respective teams below.</p>
 
-                {loading ? (
-                  <div className="contact-loading">Loading contact information...</div>
-                ) : (
                   <div className="contact-grid">
 
                     {/* General Queries — Hardcoded */}
@@ -142,7 +123,6 @@ export default function ContactPage() {
                     </div>
 
                   </div>
-                )}
               </div>
             </div>
           </div>
