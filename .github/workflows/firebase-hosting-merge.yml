@@ -17,17 +17,12 @@ jobs:
           NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: '${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}'
           NEXT_PUBLIC_FIREBASE_APP_ID: '${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}'
           NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: '${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}'
-      - name: Configure npm and install Firebase CLI
-        run: npm config set loglevel silent && npm config set fund false && npm install -g firebase-tools@15.22.3
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMSNETS_WEBSITE }}'
-          channelId: live
-          projectId: comsnets-website
-          firebaseToolsVersion: "15.22.3"
+      - name: Authenticate and Deploy to Firebase App Hosting
+        run: |
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMSNETS_WEBSITE }}" > firebase-sa.json
+          export GOOGLE_APPLICATION_CREDENTIALS="${GITHUB_WORKSPACE}/firebase-sa.json"
+          npx firebase-tools@15.22.3 deploy --only apphosting --project comsnets-website --force
         env:
-          FIREBASE_CLI_EXPERIMENTS: webframeworks
           NEXT_PUBLIC_FIREBASE_API_KEY: '${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}'
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: '${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}'
           NEXT_PUBLIC_FIREBASE_PROJECT_ID: '${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}'
