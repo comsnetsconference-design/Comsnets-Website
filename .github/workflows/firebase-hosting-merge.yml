@@ -21,8 +21,8 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMSNETS_WEBSITE }}'
-      - name: Deploy to Firebase App Hosting
-        run: npx firebase-tools@15.22.3 deploy --only apphosting --project comsnets-website --force
+      - name: Deploy to Firebase Hosting
+        run: npx firebase-tools@15.22.3 deploy --only hosting --project comsnets-website --force
         env:
           NEXT_PUBLIC_FIREBASE_API_KEY: '${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}'
           NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: '${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}'
