@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { getNavbarConfig, MenuItem, DEFAULT_NAVBAR } from '../lib/navbarService';
 
-export default function Navbar() {
+export default function Navbar({ initialNavItems }: { initialNavItems?: MenuItem[] }) {
     const pathname = usePathname();
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [navItems, setNavItems] = useState<MenuItem[]>(DEFAULT_NAVBAR);
+    const [navItems, setNavItems] = useState<MenuItem[]>(initialNavItems || DEFAULT_NAVBAR);
     const [mounted, setMounted] = useState(false);
 
     const navbarRef = useRef<HTMLDivElement>(null);
@@ -45,7 +45,8 @@ export default function Navbar() {
             }
         };
 
-        loadNavbar();
+        // Fetching on mount is removed to optimize performance
+        // since layout.tsx provides initialNavItems from the server.
 
         const handleNavbarUpdate = () => {
             sessionStorage.removeItem('navbar_config');

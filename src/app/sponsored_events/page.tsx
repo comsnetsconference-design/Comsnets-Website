@@ -1,34 +1,21 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { db } from '../../lib/firebase';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
-export default function SponsoredEvents() {
-  const [events, setEvents] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+export const revalidate = 300; // Cache for 5 minutes
 
-  useEffect(() => {
-    async function fetchEvents() {
-      if (!db) {
-        setLoading(false);
-        return;
-      }
+export default async function SponsoredEvents() {
+  let events: any[] = [];
 
-      try {
-        const q = query(collection(db, 'sponsored_events'), orderBy('year', 'desc'));
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map(doc => doc.data());
-        setEvents(data);
-      } catch (err) {
-        console.error("Error fetching sponsored events:", err);
-      } finally {
-        setLoading(false);
-      }
+  if (db) {
+    try {
+      const q = query(collection(db, 'sponsored_events'), orderBy('year', 'desc'));
+      const querySnapshot = await getDocs(q);
+      events = querySnapshot.docs.map(doc => doc.data());
+    } catch (err) {
+      console.error("Error fetching sponsored events:", err);
     }
-
-    fetchEvents();
-  }, []);
+  }
 
   return (
     <>
@@ -43,9 +30,7 @@ export default function SponsoredEvents() {
                 COMSNETS Association Sponsored Events
               </h1>
 
-              {loading ? (
-                <div style={{ textAlign: 'center', padding: '40px' }}>Loading sponsored events...</div>
-              ) : events.length > 0 ? (
+              {events.length > 0 ? (
                 <div className="table-responsive">
                   <table className="table table-striped table-hover" style={{ fontSize: '18px' }}>
                     <thead>

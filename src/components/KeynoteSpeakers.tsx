@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { db } from '../lib/firebase'; // Ensure this path matches your project structure
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 
@@ -13,37 +11,24 @@ interface Speaker {
   location?: string;
 }
 
-export default function KeynoteSpeakers() {
-  const [speakers, setSpeakers] = useState<Speaker[]>([]);
-  const [loading, setLoading] = useState(true);
+export default async function KeynoteSpeakers() {
+  let speakers: Speaker[] = [];
 
-  useEffect(() => {
-    async function fetchSpeakers() {
-      if (!db) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        // Fetching where type is 'keynote'
-        const q = query(
-          collection(db, 'speakers'), 
-          where('type', '==', 'keynote'), 
-          where('year', '==', 2027),
-          orderBy('order', 'asc')
-        );
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Speaker));
-        setSpeakers(data);
-      } catch (err) {
-        console.error("Error fetching keynote speakers:", err);
-      } finally {
-        setLoading(false);
-      }
+  if (db) {
+    try {
+      // Fetching where type is 'keynote'
+      const q = query(
+        collection(db, 'speakers'), 
+        where('type', '==', 'keynote'), 
+        where('year', '==', 2027),
+        orderBy('order', 'asc')
+      );
+      const querySnapshot = await getDocs(q);
+      speakers = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Speaker));
+    } catch (err) {
+      console.error("Error fetching keynote speakers:", err);
     }
-
-    fetchSpeakers();
-  }, []);
+  }
 
   return (
     <section className="hp-block" style={{
@@ -63,11 +48,7 @@ export default function KeynoteSpeakers() {
           opacity: 0.7
         }} />
 
-        {loading ? (
-            <div style={{ marginTop: '32px', color: 'var(--col-muted, #52657a)' }}>
-                Loading keynote speakers...
-            </div>
-        ) : speakers.length > 0 ? (
+        {speakers.length > 0 ? (
             <div style={{
               display: 'flex',
               gap: '48px',
