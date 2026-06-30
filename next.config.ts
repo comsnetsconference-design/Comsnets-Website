@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   async redirects() {
     return [
       // 1. Redirect the 2026 site

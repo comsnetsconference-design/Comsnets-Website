@@ -17,13 +17,12 @@ jobs:
           NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: '${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}'
           NEXT_PUBLIC_FIREBASE_APP_ID: '${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}'
           NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: '${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}'
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMSNETS_WEBSITE }}'
-          channelId: live
-          projectId: comsnets-website
-          firebaseToolsVersion: "13.11.2"
+          credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMSNETS_WEBSITE }}'
+      - name: Deploy to Firebase Hosting
+        run: npx firebase-tools@15.22.3 deploy --only hosting --project comsnets-website --force
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
           NEXT_PUBLIC_FIREBASE_API_KEY: '${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}'
