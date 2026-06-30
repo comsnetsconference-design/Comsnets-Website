@@ -41,16 +41,17 @@ export const saveNavbarConfig = async (items: MenuItem[]): Promise<boolean> => {
     }
 };
 
-// Default structure as fallback
+// Default structure as fallback (kept in sync with the live Firestore menu
+// so the first paint matches the loaded menu -- no swap/flash on load).
 export const DEFAULT_NAVBAR: MenuItem[] = [
     { id: 'home', label: 'Home', path: '/' },
-    { 
+    {
         id: 'about', label: 'About', path: '#', children: [
             { id: 'oc', label: 'Organizing Committee', path: '/organizing_committee' },
             { id: 'tpc', label: 'Program Committee', path: '/technical_program_committee' },
             { id: 'assoc', label: 'COMSNETS Association', path: 'http://www.comsnets-association.org/', isExternal: true },
             { id: 'contact', label: 'Contact Us', path: '/contact' }
-        ] 
+        ]
     },
     {
         id: 'conference', label: 'Conference', path: '#', children: [
@@ -58,17 +59,30 @@ export const DEFAULT_NAVBAR: MenuItem[] = [
             { id: 'keynote', label: 'Keynote Speakers', path: '/keynote_speakers' },
             { id: 'invited', label: 'Invited Speakers', path: '/invited_speakers' },
             { id: 'tr-header', label: 'Tracks', path: '#', isSectionHeader: true },
-            { id: 'panel', label: 'Panel Discussions', path: '/panel_discussions' },
+            { id: 'plenary', label: 'Plenary Debate', path: '/plenary_debate' },
+            { id: 'eis', label: 'Entrepreneur Ignite Summit (EIS)', path: '/eis' },
             { id: 'demos', label: 'Demos & Exhibits', path: '/demos_exhibits' },
             { id: 'poster', label: 'Poster Session', path: '/poster_session' },
-            { id: 'graduate', label: 'Graduate Forum', path: '/graduate_forum' }
+            { id: 'graduate', label: 'Graduate Forum', path: '/graduate_forum' },
+            { id: 'sqst', label: 'SQST', path: '/sqst' }
+        ]
+    },
+    {
+        id: 'workshops', label: 'Workshops', path: '#', children: [
+            { id: 'ws-all', label: 'All Workshop Overview', path: '/workshops' },
+            { id: 'ws-sep', label: '_____________________________', path: '#' },
+            { id: 'ws-minds', label: 'MINDS', path: '/minds_workshop' },
+            { id: 'ws-csp', label: 'CSP', path: '/cybersecurity_and_privacy_workshop' },
+            { id: 'ws-sdr', label: 'SDR', path: '/standards-driven_research' },
+            { id: 'ws-advnet', label: 'ADVnet', path: '/ADVnet' },
+            { id: 'ws-sysai', label: 'SysAI', path: '/SysAI' },
+            { id: 'ws-iart', label: 'I+ART', path: '/iart' }
         ]
     },
     {
         id: 'calls', label: 'Calls', path: '#', children: [
             { id: 'cfp', label: 'Call for Papers', path: '/call_for_papers' },
             { id: 'cfpar', label: 'Call for Participation', path: '/call_for_participation' },
-            { id: 'cfd', label: 'Call for Demos & Exhibits', path: '/demos_exhibits' },
             { id: 'cfw', label: 'Workshop Proposals', path: '/call_for_workshop_proposal' }
         ]
     },
@@ -89,7 +103,8 @@ export const DEFAULT_NAVBAR: MenuItem[] = [
             { id: 'grants', label: 'Travel Grants', path: '/travel_grants' }
         ]
     },
-    { id: 'photos', label: 'Photos', path: 'https://www.comsnets.org/photos.html', isExternal: true },
+    { id: 'keynotes', label: 'Keynotes', path: '/keynote_speakers' },
+    { id: 'photos', label: '2026 Photos', path: 'http://archive.comsnets.org/photos.html', isExternal: true },
     {
         id: 'archive', label: 'Archive', path: '#', children: [
             { id: '2026', label: '2026', path: 'http://archive.comsnets.org/archive/2026/', isExternal: true },

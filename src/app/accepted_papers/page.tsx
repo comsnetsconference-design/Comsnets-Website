@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { db } from '../../lib/firebase';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
@@ -36,37 +34,26 @@ const TRACK_ORDER: { key: string; label: string; icon: string }[] = [
   { key: 'aiot', label: 'AIoT Workshop', icon: 'fa-wifi' },
 ];
 
-export default function AcceptedPapers() {
-  const [papers, setPapers] = useState<Paper[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [errored, setErrored] = useState(false);
+export const revalidate = 300; // Cache for 5 minutes
 
-  useEffect(() => {
-    async function fetchPapers() {
-      if (!db) {
-        setLoading(false);
-        return;
-      }
+export default async function AcceptedPapers() {
+  let papers: Paper[] = [];
+  let errored = false;
 
-      try {
-        const q = query(
-          collection(db, 'accepted_papers'),
-          where('year', '==', 2027),
-          orderBy('order', 'asc')
-        );
-        const snap = await getDocs(q);
-        const data = snap.docs.map(d => ({ id: d.id, ...(d.data() as any) })) as Paper[];
-        setPapers(data);
-      } catch (err) {
-        console.error('Error fetching accepted papers:', err);
-        setErrored(true);
-      } finally {
-        setLoading(false);
-      }
+  if (db) {
+    try {
+      const q = query(
+        collection(db, 'accepted_papers'),
+        where('year', '==', 2027),
+        orderBy('order', 'asc')
+      );
+      const snap = await getDocs(q);
+      papers = snap.docs.map(d => ({ id: d.id, ...(d.data() as any) })) as Paper[];
+    } catch (err) {
+      console.error('Error fetching accepted papers:', err);
+      errored = true;
     }
-
-    fetchPapers();
-  }, []);
+  }
 
   const grouped: Record<string, Paper[]> = {};
   for (const p of papers) {
@@ -90,9 +77,7 @@ export default function AcceptedPapers() {
             <div className="well well-white">
               <h1 className="page-title" id="head" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Accepted Papers</h1>
 
-              {loading ? (
-                <div style={{ textAlign: 'center', padding: '40px' }}>Loading...</div>
-              ) : !hasData ? (
+              {!hasData ? (
                 <div style={{ textAlign: 'center', padding: '40px' }}>
                   <div style={{ fontSize: '48px', color: '#ccc', marginBottom: '15px' }}>
                     <i className="fa fa-file-text-o"></i>

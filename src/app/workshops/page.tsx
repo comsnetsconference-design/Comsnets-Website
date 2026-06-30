@@ -6,16 +6,6 @@ export default function WorkshopsPage() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
-        .section-title {
-          font-family: 'Poppins', sans-serif;
-          font-weight: 700;
-          color: #2A4D75;
-          letter-spacing: 1.2px;
-          margin-bottom: 1.5rem;
-          border-bottom: 3px solid #678DC2;
-          display: inline-block;
-          padding-bottom: 6px;
-        }
         .workshop-card {
           background: #fff;
           border: 1px solid #e1e8f0;
@@ -44,9 +34,12 @@ export default function WorkshopsPage() {
       <div className="subpage-spacer" style={{ height: '80px', background: 'linear-gradient(135deg, #0a1628, #123456)' }}></div>
       <div className="container" style={{ marginTop: '30px', marginBottom: '40px' }}>
         <div className="row">
-          <div className="col-md-9 page-content">
+          <div className="col-md-10 col-md-offset-1 page-content">
             <div className="well well-white">
-              <h1 className="page-title" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Workshops</h1>
+              <div className="event-hero">
+                <h1>Workshops</h1>
+                <div className="event-details">COMSNETS 2027</div>
+              </div>
               
               <p className="lead text-justify">COMSNETS 2027 features a series of co-located technical workshops. Focused workshops will be held on emerging topics to allow for a lively exchange of ideas. International business, academic, and government leaders will be invited to share their perspectives, complementing the main technical program.</p>
               
