@@ -156,14 +156,17 @@ main.legacy-main {
   margin: 0 auto;
   padding: 0 var(--page-pad);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   gap: 40px;
   flex-wrap: wrap;
 }
 .hero-logo-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 18px;
   margin-bottom: 14px;
 }
@@ -174,7 +177,7 @@ main.legacy-main {
 }
 .hero-h1 {
   font-family: var(--font-outfit);
-  font-size: clamp(42px, 5.5vw, 68px);
+  font-size: clamp(52px, 7vw, 90px);
   font-weight: 900;
   letter-spacing: -0.5px;
   line-height: 1;
@@ -186,7 +189,7 @@ main.legacy-main {
 }
 .hero-sub {
   font-family: var(--font-inter);
-  font-size: clamp(15px, 1.6vw, 19px);
+  font-size: clamp(18px, 2vw, 24px);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.88);
   margin: 10px 0 8px;
@@ -194,7 +197,7 @@ main.legacy-main {
 }
 .hero-date {
   font-family: var(--font-outfit);
-  font-size: clamp(17px, 2vw, 22px);
+  font-size: clamp(20px, 2.5vw, 30px);
   font-weight: 700;
   color: #fff;
   margin: 8px 0 16px;
@@ -210,7 +213,7 @@ main.legacy-main {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   font-family: var(--font-inter);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: #fff;
   text-decoration: none;
@@ -224,7 +227,7 @@ main.legacy-main {
 .hero-note {
   margin-top: 10px;
   font-family: var(--font-inter);
-  font-size: 12px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.6);
 }
 .hero-note a {
@@ -232,6 +235,7 @@ main.legacy-main {
 }
 .hero-ctas {
   display: flex;
+  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 26px;
@@ -241,7 +245,7 @@ main.legacy-main {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 40px 22px;
+  padding: 12px 20px 14px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -253,12 +257,12 @@ main.legacy-main {
 
 .hero-partners span {
   font-family: var(--font-inter), sans-serif;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   color: #333;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
 .hero-partners-logos {

@@ -1,41 +1,28 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { db } from '../../lib/firebase';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import './speaker-styles.css';
 
-export default function KeynoteSpeakers() {
-  const [speakers, setSpeakers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+export const revalidate = 300; // Cache for 5 minutes
 
-  useEffect(() => {
-    async function fetchSpeakers() {
-      if (!db) {
-        setLoading(false);
-        return;
-      }
+export default async function KeynoteSpeakers() {
+  let speakers: any[] = [];
 
-      try {
-        const q = query(
-          collection(db, 'speakers'), 
-          where('type', '==', 'keynote'),
-          where('year', '==', 2027),
-          orderBy('order', 'asc')
-        );
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setSpeakers(data);
-      } catch (err) {
-        console.error("Error fetching keynote speakers:", err);
-      } finally {
-        setLoading(false);
-      }
+  if (db) {
+    try {
+      const q = query(
+        collection(db, 'speakers'), 
+        where('type', '==', 'keynote'),
+        where('year', '==', 2027),
+        orderBy('order', 'asc')
+      );
+      const querySnapshot = await getDocs(q);
+      speakers = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    } catch (err) {
+      console.error("Error fetching keynote speakers:", err);
     }
-
-    fetchSpeakers();
-  }, []);
+  }
 
   return (
     <>
@@ -47,9 +34,7 @@ export default function KeynoteSpeakers() {
             <div className="well well-white">
               <h1 className="page-title" id="head" style={{ borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Keynote Speakers</h1>
 
-              {loading ? (
-                <div style={{ textAlign: 'center', padding: '40px' }}>Loading keynote speakers...</div>
-              ) : speakers.length > 0 ? (
+              {speakers.length > 0 ? (
                 speakers.map(speaker => (
                   <div className="speaker-card" key={speaker.id}>
                     <div className="row">
