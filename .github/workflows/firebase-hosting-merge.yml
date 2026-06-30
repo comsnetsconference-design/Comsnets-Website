@@ -23,6 +23,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMSNETS_WEBSITE }}'
           channelId: live
           projectId: comsnets-website
+          firebaseToolsVersion: "13.11.2"
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
           NEXT_PUBLIC_FIREBASE_API_KEY: '${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}'
